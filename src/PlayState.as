@@ -16,6 +16,7 @@ package
         public var selector:Selector;
         public var posX:int = 50;
         public var posY:int = 50;
+        public var conversationData:Array;
 
         public var bgBackSeats:WigglySprite;
         public var bgFrontSeats:WigglySprite;
@@ -44,18 +45,38 @@ package
             add(roadLines);
             roadLines.play("running");
 
-            var builtConvo:Array = buildConversation();
-            convo = new Convo(builtConvo[0].responses);
+            conversationData = buildConversation();
+            convo = new Convo(conversationData[0]);
 
-            convo.momSays(200,10,builtConvo[0].momSentence);
+            convo.momSays(200,10,conversationData[0].momSentence);
             convo.newConvo(posX,posY);
-            selector = new Selector(posX-5,convo.choicePos);
+            convo.start();
             add(convo);
-            add(selector);
         }
 
         override public function update():void{
             super.update();
+
+            var nextSentence:Number = convo.getInput();
+            if (nextSentence != -1){
+                var piece:ConvoBranch = this.lookupNext(nextSentence);
+                convo.kill();
+                convo = new Convo(piece);
+                convo.momSays(200,10,piece.momSentence);
+                convo.newConvo(posX,posY);
+                convo.start();
+                add(convo);
+            }
+        }
+
+        public function lookupNext(next:Number):ConvoBranch{
+            for (var i:int = 0; i < conversationData.length; i++){
+                var cur:ConvoBranch = conversationData[i];
+                if (cur._id == next){
+                    return cur;
+                }
+            }
+            return null;
         }
 
         public function buildConversation():Array{
