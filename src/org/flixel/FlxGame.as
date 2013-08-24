@@ -32,7 +32,6 @@ package org.flixel
 	{
 		[Embed(source="data/nokiafc22.ttf",fontFamily="system",embedAsCFF="false")] protected var junk:String;
 		[Embed(source="data/beep.mp3")] protected var SndBeep:Class;
-		[Embed(source="data/logo.png")] protected var ImgLogo:Class;
 
 		/**
 		 * Sets 0, -, and + to control the global volume sound volume.
@@ -786,15 +785,6 @@ package org.flixel
 			gfx.lineTo(halfWidth-helper,halfHeight-helper);
 			gfx.endFill();
 			
-			var logo:Bitmap = new ImgLogo();
-			logo.scaleX = int(helper/10);
-			if(logo.scaleX < 1)
-				logo.scaleX = 1;
-			logo.scaleY = logo.scaleX;
-			logo.x -= logo.scaleX;
-			logo.alpha = 0.35;
-			_focus.addChild(logo);
-
 			addChild(_focus);
 		}
 	}

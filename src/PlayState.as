@@ -6,6 +6,8 @@ package
         [Embed(source = '../assets/backseat.png')] public static var spriteBackseat:Class;
         [Embed(source = '../assets/frontseat.png')] public static var spriteFrontseat:Class;
         [Embed(source = '../assets/dash.png')] public static var spriteDash:Class;
+        [Embed(source = '../assets/wheel.png')] public static var spriteWheel:Class;
+        [Embed(source = '../assets/hair.png')] public static var spriteHair:Class;
         public var convo:Convo;
         public var convoTree:Array;
         public var selector:Selector;
@@ -15,11 +17,17 @@ package
         public var bgBackSeats:WigglySprite;
         public var bgFrontSeats:WigglySprite;
         public var bgDash:WigglySprite;
+        public var bgHair:WigglySprite;
+        public var bgWheel:WigglySprite;
         public var bgRoad:WigglySprite;
 
         override public function create():void{
             bgDash = new WigglySprite(0, 0, spriteDash);
             add(bgDash);
+            bgWheel = new WigglySprite(0, 0, spriteWheel);
+            add(bgWheel);
+            bgHair = new WigglySprite(0, 0, spriteHair);
+            add(bgHair);
             bgFrontSeats = new WigglySprite(0, 0, spriteFrontseat);
             add(bgFrontSeats);
             bgBackSeats = new WigglySprite(0, 0, spriteBackseat);
