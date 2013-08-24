@@ -36,7 +36,7 @@ package
         }
 
         override public function update():void{
-
+            super.update();
         }
 
         public function buildConversation():void{
