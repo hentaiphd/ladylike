@@ -114,7 +114,7 @@ package
 
             var five:ConvoBranch = new ConvoBranch(5, "Liz is fresh. She's always swearing.");
             five.addResponse("I don't care. I like her.", 8);
-            five.addResponse("Ok, so?", 8;
+            five.addResponse("Ok, so?", 8);
             five.addResponse("But Liz is my friend! She's my best friend!", 9);
             convoTree[5] = five;
 
