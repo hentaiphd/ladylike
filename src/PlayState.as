@@ -54,6 +54,10 @@ package
 
         override public function update():void{
             super.update();
+            
+            if(FlxG.keys.justPressed("SPACE")){
+                FlxG.switchState(new RoadState());
+            }
 
             var nextSentence:Number = convo.getInput();
             if (nextSentence != -1){
