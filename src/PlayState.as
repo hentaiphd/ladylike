@@ -61,15 +61,22 @@ package
         public function buildConversation():Array{
             convoTree = new Array();
 
-            var zero:ConvoBranch = new ConvoBranch(0, "I'm mom");
-            zero.addResponse("i know", 1);
-            zero.addResponse("yup", 1);
+            var zero:ConvoBranch = new ConvoBranch(0, "I don't want you two being friends--the girl is bad news.");
+            zero.addResponse("I know.", 1);
+            zero.addResponse("That's not fair mom, she's my best friend!", 1);
+            zero.addResponse("...", 1);
             convoTree[0] = zero;
 
-            var one:ConvoBranch = new ConvoBranch(1, "part 2");
-            one.addResponse("wwwwww", 0);
-            one.addResponse("hahahah", 0);
+            var one:ConvoBranch = new ConvoBranch(1, "All you two do together is eat pizza and ice cream. You're going to gain weight.");
+            one.addResponse("I don't know, we go to the library a lot.", 2);
+            one.addResponse("Yeah, I like pizza and ice cream.", 2);
+            one.addResponse("Sorry.", 2);
             convoTree[1] = one;
+
+            var two:ConvoBranch = new ConvoBranch(1, "part 2");
+            two.addResponse("wwwwww", 2);
+            two.addResponse("hahahah", 2);
+            convoTree[2] = two;
 
             return convoTree;
 
