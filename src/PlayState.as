@@ -47,8 +47,6 @@ package
 
             conversationData = buildConversation();
             convo = new Convo(conversationData[0]);
-
-            convo.momSays(200,10,conversationData[0].momSentence);
             convo.newConvo(posX,posY);
             convo.start();
             add(convo);
@@ -62,7 +60,6 @@ package
                 var piece:ConvoBranch = this.lookupNext(nextSentence);
                 convo.kill();
                 convo = new Convo(piece);
-                convo.momSays(200,10,piece.momSentence);
                 convo.newConvo(posX,posY);
                 convo.start();
                 add(convo);

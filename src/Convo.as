@@ -19,8 +19,9 @@ package{
             choicePos = new Array(choicesRef.length);
         }
 
-        public function momSays(x:int,y:int,words:String):void{
-            momWords = new FlxText(x,y,100,words);
+        public function momSays():void{
+            var words:String = this.curBranch.momSentence;
+            momWords = new FlxText(200,10,100,words);
             FlxG.state.add(momWords);
         }
 
@@ -42,6 +43,7 @@ package{
         }
 
         public function start():void{
+            this.momSays();
             selector = new Selector(this.selectX-5,this.choicePos);
             FlxG.state.add(selector);
         }
