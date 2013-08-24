@@ -54,19 +54,18 @@ package
 
         override public function update():void{
             super.update();
-            
-            if(FlxG.keys.justPressed("SPACE")){
-                FlxG.switchState(new RoadState());
-            }
+
 
             var nextSentence:Number = convo.getInput();
-            if (nextSentence != -1){
+            if (nextSentence > 0){
                 var piece:ConvoBranch = this.lookupNext(nextSentence);
                 convo.kill();
                 convo = new Convo(piece);
                 convo.newConvo(posX,posY);
                 convo.start();
                 add(convo);
+            } else if (nextSentence == -69) {
+                FlxG.switchState(new RoadState());
             }
         }
 
@@ -131,11 +130,11 @@ package
             convoTree[7] = seven;
 
             var eight:ConvoBranch = new ConvoBranch(8, "Now YOU'RE being fresh? This is why you can't hang around her anymore!");
-            eight.addResponse("YOU'RE SUCH A BITCH!", -1);
+            eight.addResponse("YOU'RE SUCH A BITCH!", -69);
             convoTree[8] = eight;
 
             var nine:ConvoBranch = new ConvoBranch(9, "Well, you're absolutely not allowed to see Liz anymore. No is no.");
-            nine.addResponse("YOU'RE SUCH A BITCH!", -1);
+            nine.addResponse("YOU'RE SUCH A BITCH!", -69);
             convoTree[9] = nine;
 
             return convoTree;
