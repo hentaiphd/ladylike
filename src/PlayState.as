@@ -14,8 +14,8 @@ package
         public var convo:Convo;
         public var convoTree:Array;
         public var selector:Selector;
-        public var posX:int = 50;
-        public var posY:int = 50;
+        public var posX:int = 10;
+        public var posY:int = 150;
         public var conversationData:Array;
 
         public var bgBackSeats:WigglySprite;

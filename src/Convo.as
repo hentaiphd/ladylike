@@ -21,7 +21,7 @@ package{
 
         public function momSays():void{
             var words:String = this.curBranch.momSentence;
-            momWords = new FlxText(200,10,100,words);
+            momWords = new FlxText(180,80,130,words);
             FlxG.state.add(momWords);
         }
 
@@ -30,14 +30,14 @@ package{
             this.selectY = y;
             var yCalc:int = y;
             for(var i:int = 0; i < choicesRef.length; i++){
-                yCalc+=5+(i*10);
+                yCalc+=5+(i*15);
                 choices[i] = oneReply(choicesRef[i],x,yCalc);
                 choicePos[i] = yCalc;
             }
         }
 
         public function oneReply(i:String,x:int,y:int):FlxText{
-            var newReply:FlxText = new FlxText(x,y,100,i);
+            var newReply:FlxText = new FlxText(x,y,150,i);
             FlxG.state.add(newReply);
             return newReply;
         }
