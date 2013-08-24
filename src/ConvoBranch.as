@@ -12,9 +12,9 @@ package{
             momSentence = sentence;
         }
 
-        public function addResponse(oneResponse:String, pointer:Number):void{
-            responses[0] = oneResponse;
-            responsePointers[0] = pointer;
-        }
+    	public function addResponse(oneResponse:String, pointer:Number):void{
+    		responses.push(oneResponse);
+    		responsePointers.push(pointer);
+    	}
     }
 }

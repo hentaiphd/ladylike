@@ -6,7 +6,7 @@ package{
         public var posY:int = 0;
 
     	public function Selector(x:int,yArray:Array):void{
-            super(x,y = yArray[0]);
+            super(x,y = yArray[0] + 5);
             refArray = yArray;
     		this.makeGraphic(5,5,0xFFFFFFFF);
             this.width = 5;
@@ -15,11 +15,11 @@ package{
 
     	override public function update():void{
     		if(FlxG.keys.justPressed("DOWN")){
-                if(posY < 2){
+                if(posY < refArray.length - 1){
                     posY++;
-                    y = refArray[posY];
+                    y = refArray[posY] + 5;
                 } else {
-                    y = refArray[0];
+                    y = refArray[0] +5;
                     posY = 0;
                 }
             }
