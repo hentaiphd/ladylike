@@ -18,6 +18,9 @@ package
         public var posY:int = 150;
         public var conversationData:Array;
 
+        public static const CONV_END:Number = -69;
+        public static const NO_RESULT:Number = -1;
+
         public var bgBackSeats:WigglySprite;
         public var bgFrontSeats:WigglySprite;
         public var bgDash:WigglySprite;
@@ -64,7 +67,7 @@ package
                 convo.newConvo(posX,posY);
                 convo.start();
                 add(convo);
-            } else if (nextSentence == -69) {
+            } else if (nextSentence == CONV_END) {
                 FlxG.switchState(new RoadState());
             }
         }

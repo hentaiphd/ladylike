@@ -63,7 +63,7 @@ package{
             if (FlxG.keys.justPressed("ENTER")){
                 return curBranch.responsePointers[this.selector.posY];
             }
-            return -1;
+            return PlayState.NO_RESULT;
         }
     }
 }
