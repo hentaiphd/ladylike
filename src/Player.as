@@ -5,6 +5,7 @@ package
     public class Player extends FlxSprite{
         [Embed(source="../assets/girl_sprites.png")] private var ImgPlayer:Class;
         private var runSpeed:int = 1;
+        public var grabbing:Boolean = false;
         private var _jumppower:int = 290;
         private var jumping:Boolean = false;
         private var running:Boolean = false;
@@ -14,7 +15,7 @@ package
             loadGraphic(ImgPlayer, true, true, 24, 40, true);
             frameWidth = 24;
             frameHeight = 40;
-            width = 10
+            width = 10;
 
             addAnimation("run", [7,8,9,10], 8, true);
             addAnimation("standing", [11]);
@@ -31,17 +32,23 @@ package
             acceleration.y = 1000;
 
 
-            if(FlxG.keys.LEFT) {
-                facing = LEFT;
-                x -= runSpeed;
-                play("run");
-            } else if(FlxG.keys.RIGHT){
-                facing = RIGHT;
-                x += runSpeed;
-                play("run");
+            grabbing = false;
+            if(FlxG.keys.DOWN){
+                grabbing = true;
+                play("crouching");
             } else {
-                play("standing");
-                running = false;
+                if(FlxG.keys.LEFT) {
+                    facing = LEFT;
+                    x -= runSpeed;
+                    play("run");
+                } else if(FlxG.keys.RIGHT){
+                    facing = RIGHT;
+                    x += runSpeed;
+                    play("run");
+                } else {
+                    play("standing");
+                    running = false;
+                }
             }
         }
 
