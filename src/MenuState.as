@@ -2,34 +2,39 @@ package
 {
     import org.flixel.*;
 
-    public class MenuState extends FlxState
-    {
+    public class MenuState extends FlxState{
+        [Embed(source = '../assets/field.png')] public static var bgSprite:Class;
+
         public var t1:FlxText;
         public var t2:FlxText;
         public var t3:FlxText;
         public var t4:FlxText;
         public var t5:FlxText;
+        public var bg:FlxSprite;
 
         override public function create():void
         {
+            bg = new FlxSprite(0,0,bgSprite);
+            add(bg);
+
             t1:FlxText;
-            t1 = new FlxText(0,30,FlxG.width,"ludumdare");
+            t1 = new FlxText(0,10,FlxG.width,"LADYLIKE");
             t1.size = 16;
             t1.alignment = "center";
             add(t1);
 
             t2:FlxText;
-            t2 = new FlxText(40,50,250,"A game by Nina Freeman and Emmett Butler");
+            t2 = new FlxText(40,30,250,"A game by Nina Freeman and Emmett Butler");
             t2.alignment = "center";
             add(t2);
 
             t4:FlxText;
-            t4 = new FlxText(40,60,250,"with audio by Deckman Coss.");
+            t4 = new FlxText(40,40,250,"with audio by Deckman Coss.");
             t4.alignment = "center";
             add(t4);
 
             t5:FlxText;
-            t5 = new FlxText(40,200,250,"To play, use the ENTER and arrow keys.");
+            t5 = new FlxText(40,210,250,"To play, use the ENTER and arrow keys.");
             t5.alignment = "center";
             add(t5);
 
