@@ -1,7 +1,7 @@
 package{
     import org.flixel.*;
 
-    public class Convo extends FlxSprite{
+    public class Convo {
 
         public var choices:Array;
         public var choicePos:Array;
@@ -48,7 +48,7 @@ package{
             FlxG.state.add(selector);
         }
 
-        override public function kill():void{
+        public function kill():void{
             for(var i:int = 0; i < choicesRef.length; i++){
                 if (choices[i]) {
                     choices[i].kill();
@@ -56,7 +56,6 @@ package{
             }
             selector.kill();
             momWords.kill();
-            super.kill();
         }
 
         public function getInput():Number{

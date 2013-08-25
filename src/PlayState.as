@@ -63,7 +63,6 @@ package
             convo = new Convo(conversationData[0]);
             convo.newConvo(posX,posY);
             convo.start();
-            add(convo);
         }
 
         override public function update():void{
@@ -76,7 +75,6 @@ package
                 convo = new Convo(piece);
                 convo.newConvo(posX,posY);
                 convo.start();
-                add(convo);
             } else if (nextSentence == CONV_END) {
                 FlxG.switchState(new DoorState());
             } else if (nextSentence == RESTART) {
