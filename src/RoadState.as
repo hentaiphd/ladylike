@@ -3,20 +3,25 @@ package
     import org.flixel.*;
 
     public class RoadState extends FlxState{
+        [Embed(source = '../assets/field.png')] public static var spriteBG:Class;
+
         public var player:Player;
         public var ground:Floor;
         public var timeFrame:Number = 0;
         public var timeSec:Number = 0;
 
         override public function create():void{
-            player = new Player(20,20);
-            add(player);
-
             ground = new Floor();
             add(ground);
 
+            var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
+            add(bg);
+
+            player = new Player(20,20);
+            add(player);
+
         }
-    
+
         override public function update():void{
             super.update();
             FlxG.collide();
