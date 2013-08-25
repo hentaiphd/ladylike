@@ -32,7 +32,7 @@ package
             }
 
             if(timeSec == 10){
-                FlxG.switchState(new EndState());
+                FlxG.switchState(new DoorInState());
             }
         }
     }

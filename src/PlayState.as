@@ -14,8 +14,8 @@ package
         public var convo:Convo;
         public var convoTree:Array;
         public var selector:Selector;
-        public var posX:int = 10;
-        public var posY:int = 120;
+        public var posX:int = 162;
+        public var posY:int = 113;
         public var conversationData:Array;
 
         public static const CONV_END:Number = -69;
@@ -28,6 +28,8 @@ package
         public var bgHair:WigglySprite;
         public var bgWheel:WigglySprite;
         public var bgRoad:FlxSprite;
+        public var textBoxMom:FlxSprite;
+        public var textBoxReply:FlxSprite;
 
         override public function create():void{
             bgRoad = new FlxSprite(0, 0, spriteRoad);
@@ -48,6 +50,14 @@ package
             roadLines.addAnimation("running", [0, 1, 2], .8);
             add(roadLines);
             roadLines.play("running");
+
+            textBoxReply = new FlxSprite(154,143);
+            textBoxReply.makeGraphic(160,90,0x88999999);
+            add(textBoxReply);
+
+            textBoxMom = new FlxSprite(10,72);
+            textBoxMom.makeGraphic(140,50,0x88999999);
+            add(textBoxMom);
 
             conversationData = buildConversation();
             convo = new Convo(conversationData[0]);
