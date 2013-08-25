@@ -4,25 +4,21 @@ package
 
     public class Player extends FlxSprite{
         [Embed(source="../assets/girl_sprites.png")] private var ImgPlayer:Class;
-        private var runSpeed:int = 5;
+        private var runSpeed:int = 1;
         private var _jumppower:int = 290;
         private var jumping:Boolean = false;
         private var running:Boolean = false;
 
         public function Player(x:int,y:int):void{
             super(x,y);
-            loadGraphic(ImgPlayer, true, true, 48, 80, true);
-            frameWidth = 48;
-            frameHeight = 80;
-            width = 20
+            loadGraphic(ImgPlayer, true, true, 24, 40, true);
+            frameWidth = 24;
+            frameHeight = 40;
+            width = 10
 
-            addAnimation("run", [7,8,9,10], 14, true);
+            addAnimation("run", [7,8,9,10], 8, true);
             addAnimation("standing", [11]);
             addAnimation("crouching", [3]);
-            addAnimation("jumping", [4]);
-            addAnimation("apex", [5]);
-            addAnimation("falling", [6]);
-            addAnimation("fishslap", [1,2], 14, false);
 
             drag.x = runSpeed*8;
             drag.y = runSpeed*3;
@@ -46,29 +42,6 @@ package
             } else {
                 play("standing");
                 running = false;
-            }
-
-            if(this.isTouching(FlxObject.FLOOR)){
-                jumping = false;
-            }
-
-            if((FlxG.keys.SPACE || FlxG.keys.UP)){
-                if(!jumping){
-                    play("crouching");
-                    jumping = true;
-                    velocity.y -= _jumppower;
-                } else {
-                    velocity.y -= 10;
-                }
-            }
-
-            if(jumping == true){
-                if(velocity.y < 0){
-                    play("jumping");
-                }
-                if(velocity.y > 0){
-                    play("falling");
-                }
             }
         }
 
