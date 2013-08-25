@@ -20,6 +20,7 @@ package
 
         public static const CONV_END:Number = -69;
         public static const NO_RESULT:Number = -1;
+        public static const RESTART:Number = -42;
 
         public var bgBackSeats:WigglySprite;
         public var bgFrontSeats:WigglySprite;
@@ -67,7 +68,9 @@ package
                 convo.start();
                 add(convo);
             } else if (nextSentence == CONV_END) {
-                FlxG.switchState(new RoadState());
+                FlxG.switchState(new DoorState());
+            } else if (nextSentence == RESTART) {
+                FlxG.switchState(new PlayState());
             }
         }
 
