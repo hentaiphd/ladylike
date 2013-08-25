@@ -10,6 +10,7 @@ package
         public var timeFrame:Number = 0;
         public var timeSec:Number = 0;
         public var flowers:Array;
+        public var awayText:FlxText;
 
         override public function create():void{
             ground = new Floor();
@@ -17,6 +18,9 @@ package
 
             var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
             add(bg);
+
+            awayText = new FlxText(135,10,200,"She's really gone...");
+            add(awayText);
 
             player = new Player(20,180);
             add(player);
@@ -38,6 +42,10 @@ package
 
             if(timeFrame%100 == 0){
                 timeSec++;
+            }
+
+            if(timeSec == 5){
+                awayText.kill();
             }
 
             if(timeSec == 10){

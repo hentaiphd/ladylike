@@ -56,7 +56,7 @@ package
             add(textBoxReply);
 
             textBoxMom = new FlxSprite(10,72);
-            textBoxMom.makeGraphic(140,50,0x88999999);
+            textBoxMom.makeGraphic(140,57,0x88999999);
             add(textBoxMom);
 
             conversationData = buildConversation();
