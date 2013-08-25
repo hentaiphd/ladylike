@@ -10,6 +10,7 @@ package
         [Embed(source = '../assets/hair.png')] public static var spriteHair:Class;
         [Embed(source = '../assets/road.png')] public static var spriteRoad:Class;
         [Embed(source = '../assets/roadlines.png')] public static var spriteRoadLines:Class;
+        [Embed(source = '../assets/roomtone_lofi.mp3')] public static var sndBG:Class;
 
         public var convo:Convo;
         public var convoTree:Array;
@@ -45,6 +46,15 @@ package
             bgBackSeats = new WigglySprite(0, 0, spriteBackseat);
             add(bgBackSeats);
 
+           if(FlxG.music == null){
+                FlxG.playMusic(sndBG);
+            } else {
+                FlxG.music.resume();
+                if(!FlxG.music.active){
+                    FlxG.playMusic(sndBG);
+                }
+            }
+
             var roadLines:FlxSprite = new FlxSprite(176, 40);
             roadLines.loadGraphic(spriteRoadLines, true, true, 6, 38, true);
             roadLines.addAnimation("running", [0, 1, 2], .8);
@@ -76,6 +86,7 @@ package
                 convo.newConvo(posX,posY);
                 convo.start();
             } else if (nextSentence == CONV_END) {
+                FlxG.music.stop();
                 FlxG.switchState(new DoorState());
             } else if (nextSentence == RESTART) {
                 FlxG.switchState(new PlayState());
