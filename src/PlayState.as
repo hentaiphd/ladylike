@@ -15,7 +15,7 @@ package
         public var convoTree:Array;
         public var selector:Selector;
         public var posX:int = 10;
-        public var posY:int = 150;
+        public var posY:int = 120;
         public var conversationData:Array;
 
         public static const CONV_END:Number = -69;

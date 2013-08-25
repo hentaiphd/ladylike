@@ -30,7 +30,7 @@ package{
             this.selectY = y;
             var yCalc:int = y;
             for(var i:int = 0; i < choicesRef.length; i++){
-                yCalc+=5+(i*15);
+                yCalc += 30;
                 choices[i] = oneReply(choicesRef[i],x,yCalc);
                 choicePos[i] = yCalc;
             }
