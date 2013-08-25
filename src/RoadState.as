@@ -22,7 +22,7 @@ package
             awayText = new FlxText(135,10,200,"She's really gone...");
             add(awayText);
 
-            player = new Player(20,180);
+            player = new Player(150,180);
             add(player);
 
             flowers = new Array(10);
