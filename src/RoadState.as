@@ -17,7 +17,7 @@ package
             var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
             add(bg);
 
-            player = new Player(20,20);
+            player = new Player(20,180);
             add(player);
 
         }
