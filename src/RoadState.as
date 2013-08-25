@@ -48,7 +48,7 @@ package
                 awayText.kill();
             }
 
-            if(timeSec == 10){
+            if(timeSec == 60){
                 FlxG.switchState(new DoorInState());
             }
 
