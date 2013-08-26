@@ -11,6 +11,7 @@ package
         [Embed(source = '../assets/road.png')] public static var spriteRoad:Class;
         [Embed(source = '../assets/roadlines.png')] public static var spriteRoadLines:Class;
         [Embed(source = '../assets/roomtone_lofi.mp3')] public static var sndBG:Class;
+        [Embed(source = '../assets/bliphigh.mp3')] public static var sndHiBlip:Class;
 
         public var convo:Convo;
         public var convoTree:Array;
@@ -80,6 +81,7 @@ package
 
             var nextSentence:Number = convo.getInput();
             if (nextSentence > 0){
+                FlxG.play(sndHiBlip);
                 var piece:ConvoBranch = this.lookupNext(nextSentence);
                 convo.kill();
                 convo = new Convo(piece);

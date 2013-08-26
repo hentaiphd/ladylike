@@ -4,6 +4,20 @@ package
 
     public class RoadState extends FlxState{
         [Embed(source = '../assets/field.png')] public static var spriteBG:Class;
+        [Embed(source = '../assets/outdoorloop_lofi.mp3')] public static var sndBG:Class;
+        [Embed(source = '../assets/bird1.mp3')] public static var sndBird1:Class;
+        [Embed(source = '../assets/bird2_l.mp3')] public static var sndBird2L:Class;
+        [Embed(source = '../assets/bird2_r.mp3')] public static var sndBird2R:Class;
+        [Embed(source = '../assets/bird3_l.mp3')] public static var sndBird3L:Class;
+        [Embed(source = '../assets/bird3_r.mp3')] public static var sndBird3R:Class;
+        [Embed(source = '../assets/bird4_l.mp3')] public static var sndBird4L:Class;
+        [Embed(source = '../assets/bird4_r.mp3')] public static var sndBird4R:Class;
+        [Embed(source = '../assets/bird5_l.mp3')] public static var sndBird5L:Class;
+        [Embed(source = '../assets/bird5_r.mp3')] public static var sndBird5R:Class;
+        [Embed(source = '../assets/bird6_l.mp3')] public static var sndBird6L:Class;
+        [Embed(source = '../assets/bird6_r.mp3')] public static var sndBird6R:Class;
+        [Embed(source = '../assets/bird7_l.mp3')] public static var sndBird7L:Class;
+        [Embed(source = '../assets/bird7_r.mp3')] public static var sndBird7R:Class;
 
         public var player:Player;
         public var ground:Floor;
@@ -31,9 +45,31 @@ package
                 add(flower);
                 flowers[i] = flower;
             }
+
+            FlxG.playMusic(sndBG);
         }
 
         public function handleGround(player:Player, ground:FlxSprite):void{}
+
+        public function playBirdAmbience():void{
+            var pick:Number = FlxG.random() * 1200;
+            if (pick > 7) { return; }
+            if (pick > 6) {
+                FlxG.play(sndBird7L);
+            } else if (pick > 5) {
+                FlxG.play(sndBird6L);
+            } else if (pick > 4) {
+                FlxG.play(sndBird5L);
+            } else if (pick > 3) {
+                FlxG.play(sndBird4L);
+            } else if (pick > 2) {
+                FlxG.play(sndBird3L);
+            } else if (pick > 1) {
+                FlxG.play(sndBird2L);
+            } else if (pick > 0) {
+                FlxG.play(sndBird1);
+            }
+        }
 
         override public function update():void{
             super.update();
@@ -49,6 +85,7 @@ package
             }
 
             if(timeSec == 60){
+                FlxG.music.stop();
                 FlxG.switchState(new DoorInState());
             }
 
@@ -59,6 +96,8 @@ package
                     }
                 }
             }
+
+            playBirdAmbience();
         }
     }
 }
