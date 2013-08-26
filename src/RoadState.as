@@ -20,6 +20,8 @@ package
         [Embed(source = '../assets/bird7_r.mp3')] public static var sndBird7R:Class;
         [Embed(source = '../assets/car.mp3')] public static var sndCar:Class;
         [Embed(source = '../assets/truck.mp3')] public static var sndTruck:Class;
+        [Embed(source = '../assets/drivingaway.mp3')] public static var sndDriveAway:Class;
+        [Embed(source = '../assets/pullingup.mp3')] public static var sndPullUp:Class;
 
         public var player:Player;
         public var ground:Floor;
@@ -49,6 +51,7 @@ package
             }
 
             FlxG.playMusic(sndBG);
+            FlxG.play(sndDriveAway);
         }
 
         public function handleGround(player:Player, ground:FlxSprite):void{}
@@ -96,7 +99,8 @@ package
                 awayText.kill();
             }
 
-            if(timeSec == 30){
+            var sadTime:Number = 30;
+            if(timeSec == sadTime){
                 FlxG.music.stop();
                 FlxG.switchState(new DoorInState());
             }
