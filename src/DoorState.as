@@ -3,6 +3,8 @@ package
     import org.flixel.*;
 
     public class DoorState extends FlxState{
+        [Embed(source = '../assets/doorclose.mp3')] public static var sndDoorClose:Class;
+
         public var timeFrame:Number = 0;
         public var timeSec:Number = 0;
 
@@ -13,6 +15,7 @@ package
             t.size = 16;
             t.alignment = "center";
             add(t);
+            FlxG.play(sndDoorClose);
         }
 
         override public function update():void
