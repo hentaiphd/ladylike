@@ -18,6 +18,8 @@ package
         [Embed(source = '../assets/bird6_r.mp3')] public static var sndBird6R:Class;
         [Embed(source = '../assets/bird7_l.mp3')] public static var sndBird7L:Class;
         [Embed(source = '../assets/bird7_r.mp3')] public static var sndBird7R:Class;
+        [Embed(source = '../assets/car.mp3')] public static var sndCar:Class;
+        [Embed(source = '../assets/truck.mp3')] public static var sndTruck:Class;
 
         public var player:Player;
         public var ground:Floor;
@@ -51,23 +53,33 @@ package
 
         public function handleGround(player:Player, ground:FlxSprite):void{}
 
+        public function playCarAmbience():void{
+            var pick:Number = FlxG.random() * 1000;
+            if(pick > 3) { return; }
+            if (pick > 2) {
+                FlxG.play(sndCar);
+            } else if (pick > 1) {
+                FlxG.play(sndTruck);
+            }
+        }
+
         public function playBirdAmbience():void{
-            var pick:Number = FlxG.random() * 1200;
+            var pick:Number = FlxG.random() * 1300;
             if (pick > 7) { return; }
             if (pick > 6) {
-                FlxG.play(sndBird7L);
+                FlxG.play(sndBird7L, .5);
             } else if (pick > 5) {
-                FlxG.play(sndBird6L);
+                FlxG.play(sndBird6L, .5);
             } else if (pick > 4) {
-                FlxG.play(sndBird5L);
+                FlxG.play(sndBird5L, .5);
             } else if (pick > 3) {
-                FlxG.play(sndBird4L);
+                FlxG.play(sndBird4L, .5);
             } else if (pick > 2) {
-                FlxG.play(sndBird3L);
+                FlxG.play(sndBird3L, .5);
             } else if (pick > 1) {
-                FlxG.play(sndBird2L);
+                FlxG.play(sndBird2L, .5);
             } else if (pick > 0) {
-                FlxG.play(sndBird1);
+                FlxG.play(sndBird1, .5);
             }
         }
 
@@ -98,6 +110,7 @@ package
             }
 
             playBirdAmbience();
+            playCarAmbience();
         }
     }
 }
