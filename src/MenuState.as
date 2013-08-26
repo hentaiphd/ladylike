@@ -47,7 +47,7 @@ package
             t3.alignment = "center";
             add(t3);
 
-            FlxG.mouse.show();
+            FlxG.mouse.hide();
         }
 
         override public function update():void
