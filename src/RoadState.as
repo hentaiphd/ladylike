@@ -84,7 +84,7 @@ package
                 awayText.kill();
             }
 
-            if(timeSec == 60){
+            if(timeSec == 30){
                 FlxG.music.stop();
                 FlxG.switchState(new DoorInState());
             }
