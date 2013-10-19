@@ -77,7 +77,7 @@ package
             textBoxMom.makeGraphic(140,57,0x88999999);
             add(textBoxMom);
 
-            dat = JSON.decode(convInstanceStr);
+            dat = com.adobe.serialization.json.JSON.decode(convInstanceStr);
 
             conversationData = buildConversation();
             var start_branch:ConvoBranch;
