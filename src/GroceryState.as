@@ -1,109 +1,104 @@
 package
 {
     import org.flixel.*;
-    import org.flixel.plugin.photonstorm.*;
 
     public class GroceryState extends FlxState{
+        [Embed(source = '../assets/field.png')] public static var spriteBG:Class;
 
         public var player:Player;
-        public var food:Food;
+        public var ground:Floor;
         public var timeFrame:Number = 0;
-        public var timeSec:Number = 0;
-        public var awayText:FlxText;
-        public var mousePoint:FlxObject;
-        public var foodGroup:FlxGroup;
-        public var foodText:FlxText;
-        public var foodNames:Array;
-        public var ranNum:int;
-        public var nameFlag:Boolean;
-        public var n:int = 0;
+        public var timeSec:Number = 5;
+        public var eggs:Array;
+        public var timerText:FlxText;
+        public var timeLeft:int = 0;
 
         override public function create():void{
-            foodGroup = new FlxGroup();
-            foodText = new FlxText(10,10,300,"Hello");
-            foodText.color = 0xFFFFFFFF;
-            add(foodText);
-            nameFlag = false;
+            ground = new Floor();
+            add(ground);
 
-            var score:FlxText = new FlxText(10,20,200,n.toString());
-            add(score);
+            var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
+            add(bg);
 
-            foodNames = new Array("Milk", "Eggs", "Water", "Bread", "Saltines", "Chicken",
-                                    "a", "b", "c", "d", "e", "f",
-                                    "g", "h", "i", "j", "k", "l",
-                                    "m", "n");
+            timerText = new FlxText(135,10,200,timeSec.toString());
+            add(timerText);
 
-            for(var i:int = 0; i < 20; i++){
-                var ranX:Number = Math.random()*FlxG.width;
-                var ranY:Number = Math.random()*FlxG.height;
-                food = new Food(ranX,ranY);
-                food.foodName = foodNames[i];
-                food.foodNameText = new FlxText(ranX, ranY, 200, food.foodName);
-                foodGroup.add(food);
-                add(food);
-                add(food.foodNameText);
-            }
+            player = new Player(150,180);
+            add(player);
 
-            mousePoint = new FlxObject(FlxG.mouse.x, FlxG.mouse.y);
-            add(mousePoint);
-
-            FlxG.mouse.show()
-
-        }
-
-        public function foodPush(food:Food, mouse:FlxObject):void{
-            food.x = FlxG.mouse.x;
-            food.y = FlxG.mouse.y;
-        }
-
-        public function foodTouch(food:Food, mouse:FlxObject):void{
-            if(FlxG.mouse.justReleased()){
-                if(food.foodName == foodText.text){
-                    n++;
-                }
+            eggs = new Array(10);
+            for(var i:int = 0; i < eggs.length; i++){
+                var egg:Egg = new Egg((30*i+Math.random()*40), 210);
+                add(egg);
+                eggs[i] = egg;
             }
         }
 
-        public function borderCollide(wallSprite:FlxSprite):void{
-            if(wallSprite.x >= FlxG.width - wallSprite.width)
-                wallSprite.x = FlxG.width - wallSprite.width;
-            if(wallSprite.x <= 0)
-                wallSprite.x = 0;
-            if(wallSprite.y >= FlxG.height - wallSprite.height)
-                wallSprite.y = FlxG.height - wallSprite.height;
-            if(wallSprite.y <= 0)
-                wallSprite.y = 0;
+        public function handleGround(player:Player, ground:FlxSprite):void{
         }
 
-        override public function update():void{
-            super.update();
-            mousePoint.x = FlxG.mouse.x;
-            mousePoint.y = FlxG.mouse.y;
-            FlxG.collide();
-            borderCollide(food);
-            FlxG.collide(food, mousePoint, foodPush);
+        public function loseTimer():void{
+            timeLeft++;
+            if(timeLeft%200 == 0) {
+                timerText.text = "YOU LOSE";
+                this.kill();
+            }
+
+            if (FlxG.keys.justReleased("RIGHT")) {
+                timeLeft = 0;
+            }
+
+            if (FlxG.keys.justReleased("LEFT")) {
+                timeLeft = 0;
+            }
+        }
+
+        public function endState(player:Player):void{
             timeFrame++;
 
             if(timeFrame%100 == 0){
-                timeSec++;
+                timeSec--;
             }
 
-            if(nameFlag == false){
-                if(timeFrame%100 == 0){
-                    nameFlag = true;
-                    ranNum = Math.round(Math.random()*20);
-                    foodText.text = foodNames[ranNum];
+            if(timeSec == 0){
+                if(player.holding == true) {
+                    //good job~
+                } else {
+                    //this.kill();
                 }
-            } else {
-                nameFlag = false;
+            }
+        }
+
+
+        override public function update():void{
+            super.update();
+            FlxG.collide(player, ground, handleGround);
+            endState(player);
+
+            var i:int;
+
+            if (player.grabbing) {
+                for(i = 0; i < eggs.length; i++){
+                    if (player.overlaps(eggs[i])) {
+                        player.holding = true;
+                        eggs[i].held = true;
+                    }
+                }
             }
 
-            if(timeSec == 5){
-                awayText.kill();
+            for(i = 0; i < eggs.length; i++){
+                if (eggs[i].held == true){
+                    eggs[i].x = player.x+5;
+                    eggs[i].y = player.y-10;
+                }
             }
 
-            if(timeSec == 30){
-                //FlxG.switchState(new DoorInState());
+            if(player.holding == true) {
+                if (FlxG.keys.LEFT) {
+                    loseTimer();
+                } else if (FlxG.keys.RIGHT) {
+                    loseTimer();
+                }
             }
         }
     }

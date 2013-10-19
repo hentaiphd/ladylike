@@ -126,20 +126,20 @@ package
 
             var three:ConvoBranch = new ConvoBranch(3, "I'm sure there are other nice girls at school.");
             three.addResponse("People think I'm weird.", 6);
-            three.addResponse("I do have other friends at school.", 13);
+            three.addResponse("I do have other friends at school.", 5);
             three.addResponse("...", 4);
             convoTree[3] = three;
 
             var four:ConvoBranch = new ConvoBranch(4, "Hello? What's wrong with you?");
             four.addResponse("Nothing. I just like her.", 5);
-            four.addResponse("Why do you care? You're being mean.", 13);
+            four.addResponse("Why do you care? You're being mean.", 5);
             four.addResponse("Sorry.", 10);
             convoTree[4] = four;
 
             var five:ConvoBranch = new ConvoBranch(5, "Liz is fresh. She's always swearing.");
             five.addResponse("I don't care. I like her.", 6);
-            five.addResponse("Ok, so?", 13);
-            five.addResponse("But Liz is my friend! She's my best friend!", 11);
+            five.addResponse("Ok, sorry, let's not talk about it.", 10);
+            five.addResponse("But Liz is my friend! She's my best friend!", 6);
             convoTree[5] = five;
 
             var six:ConvoBranch = new ConvoBranch(6, "What about those pretty girls on the tennis team?");
@@ -163,7 +163,7 @@ package
 
             var ten:ConvoBranch = new ConvoBranch(10, "Stop apologizing for everything--it's not attractive.");
             ten.addResponse("I don't care if I'm attractive.", 12);
-            ten.addResponse("Ok... sorry.", 5);
+            ten.addResponse("Ok... sorry.", 11);
             ten.addResponse("What do my looks have to do with this?", 11);
             convoTree[10] = ten;
 
@@ -198,6 +198,22 @@ package
             sixteen.addResponse("I'm not--why do you always hate my friends!", 9);
             sixteen.addResponse("I don't care what girls are supposed to do!", 8);
             convoTree[16] = sixteen;
+
+            var seventeen:ConvoBranch = new ConvoBranch(17, "I'm concerned. I want you to look good and I don't want you hanging around troublemakers.");
+            seventeen.addResponse("You don't know anything about Liz!", 18);
+            seventeen.addResponse("Just say it--I'm fat.", 19);
+            convoTree[17] = seventeen;
+
+            var eighteen:ConvoBranch = new ConvoBranch(18, "Liz is loud and rude. I don't want you being that kind of girl.");
+            eighteen.addResponse("Well I like Liz no matter what she's like.", 16);
+            eighteen.addResponse("You're so mean!", 16);
+            convoTree[18] = eighteen;
+
+            var nineteen:ConvoBranch = new ConvoBranch(19, "No, but you and Liz snack like little boys. It's not appropriate for a girl.");
+            nineteen.addResponse("You don't even care if I'm happy.", 16);
+            nineteen.addResponse("Oh my god mom, everyone likes snacks!", 16);
+            convoTree[19] = nineteen;
+
 
             return convoTree;
 

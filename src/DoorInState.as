@@ -9,7 +9,7 @@ package
         override public function create():void
         {
             var t:FlxText;
-            t = new FlxText(0,FlxG.height/2-10,FlxG.width,"The door is open--just get in.");
+            t = new FlxText(0,FlxG.height/2-10,FlxG.width,"I came back to see if you're ready to behave.");
             t.size = 16;
             t.alignment = "center";
             add(t);
