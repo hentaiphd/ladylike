@@ -91,7 +91,7 @@ package
 
         public function decelerate():void{
             if (counter < 5) {;
-                drag.x += 100;
+                drag.x += 200;
                 play("run");
                 counter++;
             } else if (counter == 5) {

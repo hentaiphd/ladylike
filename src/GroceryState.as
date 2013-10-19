@@ -8,10 +8,11 @@ package
         public var player:Player;
         public var ground:Floor;
         public var timeFrame:Number = 0;
-        public var timeSec:Number = 5;
+        public var timeSec:Number = 12;
         public var eggs:Array;
         public var timerText:FlxText;
         public var timeLeft:int = 0;
+        public var lose:Boolean = false;
 
         override public function create():void{
             ground = new Floor();
@@ -39,17 +40,9 @@ package
 
         public function loseTimer():void{
             timeLeft++;
-            if(timeLeft%200 == 0) {
+            if(timeLeft%125 == 0) {
                 timerText.text = "YOU LOSE";
                 this.kill();
-            }
-
-            if (FlxG.keys.justReleased("RIGHT")) {
-                timeLeft = 0;
-            }
-
-            if (FlxG.keys.justReleased("LEFT")) {
-                timeLeft = 0;
             }
         }
 
@@ -60,12 +53,24 @@ package
                 timeSec--;
             }
 
-            if(timeSec == 0){
+            if(timeSec == 4){
                 if(player.holding == true) {
-                    //good job~
+                    if(player.x > FlxG.width - 50){
+                        timerText.text = "YOU WIN";
+                        lose = true;
+                    } else {
+                        timerText.text = "I have to hurry or mom will be so mad!";
+                        lose = true;
+                    }
                 } else {
-                    //this.kill();
+                    timerText.text = "Mom wants eggs...";
+                    lose = true;
                 }
+            }
+
+            if(timeSec == 0){
+                timerText.text = "LOSE";
+                lose = true;
             }
         }
 
@@ -74,6 +79,10 @@ package
             super.update();
             FlxG.collide(player, ground, handleGround);
             endState(player);
+
+            if(lose == false){
+                timerText.text = timeSec.toString();
+            }
 
             var i:int;
 
@@ -98,6 +107,14 @@ package
                     loseTimer();
                 } else if (FlxG.keys.RIGHT) {
                     loseTimer();
+                }
+
+                if (FlxG.keys.justReleased("RIGHT")) {
+                    timeLeft = 0;
+                }
+
+                if (FlxG.keys.justReleased("LEFT")) {
+                    timeLeft = 0;
                 }
             }
         }

@@ -6,6 +6,7 @@ package
     import flash.debugger.enterDebugger;
 
     public class PlayState extends FlxState{
+        [Embed(source = '../assets/car.png')] public static var spriteCar:Class;
         [Embed(source = '../assets/backseat.png')] public static var spriteBackseat:Class;
         [Embed(source = '../assets/frontseat.png')] public static var spriteFrontseat:Class;
         [Embed(source = '../assets/dash.png')] public static var spriteDash:Class;
@@ -26,6 +27,10 @@ package
         public static const CONV_END:Number = -69;
         public static const NO_RESULT:String = "-1";
         public static const RESTART:String = "-42";
+        public static const momTextX:int = 25;
+        public static const momTextY:int = 117;
+        public static const girlTextX:int = 25;
+        public static const girlTextY:int = 125;
 
         public var bgBackSeats:WigglySprite;
         public var bgFrontSeats:WigglySprite;
@@ -65,11 +70,11 @@ package
             add(roadLines);
             roadLines.play("running");
 
-            textBoxReply = new FlxSprite(154,143);
+            textBoxReply = new FlxSprite(girlTextX,girlTextY);
             textBoxReply.makeGraphic(160,90,0x88999999);
             add(textBoxReply);
 
-            textBoxMom = new FlxSprite(10,72);
+            textBoxMom = new FlxSprite(momTextX,momTextY);
             textBoxMom.makeGraphic(140,57,0x88999999);
             add(textBoxMom);
 
@@ -82,8 +87,13 @@ package
                     start_branch = conversationData[i];
                 }
             }
+
+            var testBG:FlxSprite = new FlxSprite(0,0);
+            testBG.loadGraphic(spriteCar, true, true, 320, 240, true);
+            add(testBG);
+
             convo = new Convo(start_branch);
-            convo.newConvo(posX,posY);
+            convo.newConvo(girlTextX,girlTextY);
             convo.start();
         }
 
@@ -96,7 +106,7 @@ package
                 var piece:ConvoBranch = this.lookupNext(nextSentence);
                 convo.kill();
                 convo = new Convo(piece);
-                convo.newConvo(posX,posY);
+                convo.newConvo(girlTextX,girlTextY);
                 convo.start();
             } else if (nextSentence == "CONVO_END") {
                 FlxG.music.stop();
