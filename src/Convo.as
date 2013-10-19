@@ -58,7 +58,7 @@ package{
             momWords.kill();
         }
 
-        public function getInput():Number{
+        public function getInput():String{
             if (FlxG.keys.justPressed("ENTER")){
                 return curBranch.responsePointers[this.selector.posY];
             }

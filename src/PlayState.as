@@ -1,6 +1,8 @@
 package
 {
     import org.flixel.*;
+    import com.adobe.serialization.json.JSON;
+    import flash.debugger.enterDebugger;
 
     public class PlayState extends FlxState{
         [Embed(source = '../assets/backseat.png')] public static var spriteBackseat:Class;
@@ -12,6 +14,7 @@ package
         [Embed(source = '../assets/roadlines.png')] public static var spriteRoadLines:Class;
         [Embed(source = '../assets/roomtone_lofi.mp3')] public static var sndBG:Class;
         [Embed(source = '../assets/bliphigh.mp3')] public static var sndHiBlip:Class;
+        [Embed(source='../assets/ladylike.json', mimeType="application/octet-stream")] public static var convFile:Class;
 
         public var convo:Convo;
         public var convoTree:Array;
@@ -21,8 +24,8 @@ package
         public var conversationData:Array;
 
         public static const CONV_END:Number = -69;
-        public static const NO_RESULT:Number = -1;
-        public static const RESTART:Number = -42;
+        public static const NO_RESULT:String = "-1";
+        public static const RESTART:String = "-42";
 
         public var bgBackSeats:WigglySprite;
         public var bgFrontSeats:WigglySprite;
@@ -32,6 +35,10 @@ package
         public var bgRoad:FlxSprite;
         public var textBoxMom:FlxSprite;
         public var textBoxReply:FlxSprite;
+
+        private var convInstance:Object = new convFile();
+        public var convInstanceStr:String = convInstance.toString();
+        private var dat:Object;
 
         override public function create():void{
             bgRoad = new FlxSprite(0, 0, spriteRoad);
@@ -70,8 +77,16 @@ package
             textBoxMom.makeGraphic(140,57,0x88999999);
             add(textBoxMom);
 
+            dat = JSON.decode(convInstanceStr);
+
             conversationData = buildConversation();
-            convo = new Convo(conversationData[0]);
+            var start_branch:ConvoBranch;
+            for(var i:Number = 0; i < conversationData.length; i++){
+                if(conversationData[i]._id == "Start") {
+                    start_branch = conversationData[i];
+                }
+            }
+            convo = new Convo(start_branch);
             convo.newConvo(posX,posY);
             convo.start();
         }
@@ -79,23 +94,23 @@ package
         override public function update():void{
             super.update();
 
-            var nextSentence:Number = convo.getInput();
-            if (nextSentence > 0){
+            var nextSentence:String = convo.getInput();
+            if (int(nextSentence) > 0){
                 FlxG.play(sndHiBlip);
                 var piece:ConvoBranch = this.lookupNext(nextSentence);
                 convo.kill();
                 convo = new Convo(piece);
                 convo.newConvo(posX,posY);
                 convo.start();
-            } else if (nextSentence == CONV_END) {
+            } else if (nextSentence == "CONVO_END") {
                 FlxG.music.stop();
                 FlxG.switchState(new DoorState());
-            } else if (nextSentence == RESTART) {
+            } else if (nextSentence == "RESTART") {
                 FlxG.switchState(new PlayState());
             }
         }
 
-        public function lookupNext(next:Number):ConvoBranch{
+        public function lookupNext(next:String):ConvoBranch{
             for (var i:int = 0; i < conversationData.length; i++){
                 var cur:ConvoBranch = conversationData[i];
                 if (cur._id == next){
@@ -107,116 +122,24 @@ package
 
         public function buildConversation():Array{
             convoTree = new Array();
-
-            var zero:ConvoBranch = new ConvoBranch(0, "I don't want you two being friends--the girl is bad news.");
-            zero.addResponse("I know.", 2);
-            zero.addResponse("That's not fair mom, she's my best friend!", 1);
-            convoTree[0] = zero;
-
-            var one:ConvoBranch = new ConvoBranch(1, "All you two do together is eat pizza and ice cream. You're going to gain weight.");
-            one.addResponse("I don't know, we go to the library a lot.", 2);
-            one.addResponse("Yeah, I like pizza and ice cream.", 3);
-            one.addResponse("...", 4);
-            convoTree[1] = one;
-
-            var two:ConvoBranch = new ConvoBranch(2, "Why can't you find a new friend? She's not the only girl on earth.");
-            two.addResponse("...", 4);
-            two.addResponse("She's really nice to me. I don't need a new friend.", 3);
-            convoTree[2] = two;
-
-            var three:ConvoBranch = new ConvoBranch(3, "I'm sure there are other nice girls at school.");
-            three.addResponse("People think I'm weird.", 6);
-            three.addResponse("I do have other friends at school.", 5);
-            three.addResponse("...", 4);
-            convoTree[3] = three;
-
-            var four:ConvoBranch = new ConvoBranch(4, "Hello? What's wrong with you?");
-            four.addResponse("Nothing. I just like her.", 5);
-            four.addResponse("Why do you care? You're being mean.", 5);
-            four.addResponse("Sorry.", 10);
-            convoTree[4] = four;
-
-            var five:ConvoBranch = new ConvoBranch(5, "Liz is fresh. She's always swearing.");
-            five.addResponse("I don't care. I like her.", 6);
-            five.addResponse("Ok, sorry, let's not talk about it.", 10);
-            five.addResponse("But Liz is my friend! She's my best friend!", 6);
-            convoTree[5] = five;
-
-            var six:ConvoBranch = new ConvoBranch(6, "What about those pretty girls on the tennis team?");
-            six.addResponse("They're bullies, mom.", 14);
-            six.addResponse("We don't talk much.", 7);
-            six.addResponse("I don't like them, sorry.", 10);
-            convoTree[6] = six;
-
-            var seven:ConvoBranch = new ConvoBranch(7, "Why?");
-            seven.addResponse("You just wish I was skinny and pretty like other girls!", 14);
-            seven.addResponse("I like Liz, ok? Geez.", 11);
-            convoTree[7] = seven;
-
-            var eight:ConvoBranch = new ConvoBranch(8, "Now you're being fresh. This is why you can't hang around her anymore!");
-            eight.addResponse("YOU'RE SUCH A BITCH!", CONV_END);
-            convoTree[8] = eight;
-
-            var nine:ConvoBranch = new ConvoBranch(9, "Well, you're absolutely not allowed to see Liz anymore. No is no.");
-            nine.addResponse("YOU'RE SUCH A BITCH!", CONV_END);
-            convoTree[9] = nine;
-
-            var ten:ConvoBranch = new ConvoBranch(10, "Stop apologizing for everything--it's not attractive.");
-            ten.addResponse("I don't care if I'm attractive.", 12);
-            ten.addResponse("Ok... sorry.", 11);
-            ten.addResponse("What do my looks have to do with this?", 11);
-            convoTree[10] = ten;
-
-            var eleven:ConvoBranch = new ConvoBranch(11, "Taking care of your body is more important than Liz. Why don't you start running?");
-            eleven.addResponse("Friends ARE important. Do you want me to be alone, mom?", 15);
-            eleven.addResponse("Liz and I walk everywhere all the time.", 13);
-            eleven.addResponse("I don't care about my body.", 12);
-            convoTree[11] = eleven;
-
-            var twelve:ConvoBranch = new ConvoBranch(12, "You SHOULD care. Stop letting yourself go!");
-            twelve.addResponse("Mom, Liz and I are active. We walk a lot.", 13);
-            twelve.addResponse("I think I look fine.", 15);
-            twelve.addResponse("I know I'm fat. I suck. Who cares.", 16);
-            convoTree[12] = twelve;
-
-            var thirteen:ConvoBranch = new ConvoBranch(13, "I saw that note in your bag. Liz was talking about kissing boys--I don't like that, it's inappropriate.");
-            thirteen.addResponse("That's not fair, mom! Stop looking through my backpack!", 16);
-            thirteen.addResponse("She's my friend--why do you hate her so much!", 15);
-            convoTree[13] = thirteen;
-
-            var fourteen:ConvoBranch = new ConvoBranch(14, "You're just being dramatic.");
-            fourteen.addResponse("Other girls tease my friend Alex, they call her fat.", 11);
-            fourteen.addResponse("You don't go to my school, so you don't know how much it sucks!", 13);
-            convoTree[14] = fourteen;
-
-            var fifteen:ConvoBranch = new ConvoBranch(15, "When you leave middle school you'll make new friends.");
-            fifteen.addResponse("How do you know? It's hard to make friends.", 16);
-            fifteen.addResponse("No, I won't.", 16);
-            convoTree[15] = fifteen;
-
-            var sixteen:ConvoBranch = new ConvoBranch(16, "Stop being so negative and stubborn--girls shouldn't behave like that.");
-            sixteen.addResponse("I'm not--why do you always hate my friends!", 9);
-            sixteen.addResponse("I don't care what girls are supposed to do!", 8);
-            convoTree[16] = sixteen;
-
-            var seventeen:ConvoBranch = new ConvoBranch(17, "I'm concerned. I want you to look good and I don't want you hanging around troublemakers.");
-            seventeen.addResponse("You don't know anything about Liz!", 18);
-            seventeen.addResponse("Just say it--I'm fat.", 19);
-            convoTree[17] = seventeen;
-
-            var eighteen:ConvoBranch = new ConvoBranch(18, "Liz is loud and rude. I don't want you being that kind of girl.");
-            eighteen.addResponse("Well I like Liz no matter what she's like.", 16);
-            eighteen.addResponse("You're so mean!", 16);
-            convoTree[18] = eighteen;
-
-            var nineteen:ConvoBranch = new ConvoBranch(19, "No, but you and Liz snack like little boys. It's not appropriate for a girl.");
-            nineteen.addResponse("You don't even care if I'm happy.", 16);
-            nineteen.addResponse("Oh my god mom, everyone likes snacks!", 16);
-            convoTree[19] = nineteen;
-
-
+            for (var i:Number = 0; i < dat['data'].length; i++) {
+                var jsbit:Object = dat['data'][i];
+                var pageno:String = jsbit['title'];
+                var strings:Array = jsbit['text'].split('\n');
+                var momText:String = strings[0];
+                var cur:ConvoBranch = new ConvoBranch(pageno, momText);
+                for (var j:Number = 1; j < strings.length; j++) {
+                    if(strings[j] != "") {
+                        var regex:RegExp = /[\[\[\]\]]/g;
+                        var stripped:Array = strings[j].replace(regex, "").split("|");
+                        var response:String = stripped[0];
+                        var targ:String = stripped[1];
+                        cur.addResponse(response, targ);
+                    }
+                }
+                convoTree[i] = cur;
+            }
             return convoTree;
-
         }
     }
 }
