@@ -1,8 +1,8 @@
-package {
+package org.twine {
     import com.adobe.serialization.json.JSON;
 
     public class TwineImporter {
-        [Embed(source='../assets/ladylike.json', mimeType="application/octet-stream")] public static var twineFile:Class;
+        [Embed(source='../../../assets/ladylike.json', mimeType="application/octet-stream")] public static var twineFile:Class;
 
         private var twineFile_:Object = new twineFile();
         private var twineJson:String = twineFile_.toString();

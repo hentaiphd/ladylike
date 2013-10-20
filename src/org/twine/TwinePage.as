@@ -1,4 +1,4 @@
-package {
+package org.twine {
     public class TwinePage {
         private var title:String;
         private var lines:Array;

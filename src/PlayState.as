@@ -1,6 +1,7 @@
 package
 {
     import org.flixel.*;
+    import org.twine.*;
     import com.adobe.serialization.json.JSON;
     import flash.debugger.enterDebugger;
 
@@ -72,7 +73,7 @@ package
             textBoxMom.makeGraphic(140,57,0x88999999);
             add(textBoxMom);
 
-            var pages:Array = (new TwineImporter()).getPages();
+            var pages:Array = (new org.twine.TwineImporter()).getPages();
 
             conversationData = buildConversation(pages);
             var start_branch:ConvoBranch;
