@@ -14,7 +14,6 @@ package
         [Embed(source = '../assets/roadlines.png')] public static var spriteRoadLines:Class;
         [Embed(source = '../assets/roomtone_lofi.mp3')] public static var sndBG:Class;
         [Embed(source = '../assets/bliphigh.mp3')] public static var sndHiBlip:Class;
-        [Embed(source='../assets/ladylike.json', mimeType="application/octet-stream")] public static var convFile:Class;
 
         public var convo:Convo;
         public var convoTree:Array;
@@ -35,10 +34,6 @@ package
         public var bgRoad:FlxSprite;
         public var textBoxMom:FlxSprite;
         public var textBoxReply:FlxSprite;
-
-        private var convInstance:Object = new convFile();
-        public var convInstanceStr:String = convInstance.toString();
-        private var dat:Object;
 
         override public function create():void{
             bgRoad = new FlxSprite(0, 0, spriteRoad);
@@ -77,9 +72,9 @@ package
             textBoxMom.makeGraphic(140,57,0x88999999);
             add(textBoxMom);
 
-            dat = com.adobe.serialization.json.JSON.decode(convInstanceStr);
+            var pages:Array = (new TwineImporter()).getPages();
 
-            conversationData = buildConversation();
+            conversationData = buildConversation(pages);
             var start_branch:ConvoBranch;
             for(var i:Number = 0; i < conversationData.length; i++){
                 if(conversationData[i]._id == "Start") {
@@ -120,18 +115,15 @@ package
             return null;
         }
 
-        public function buildConversation():Array{
+        public function buildConversation(pages:Array):Array{
             convoTree = new Array();
-            for (var i:Number = 0; i < dat['data'].length; i++) {
-                var jsbit:Object = dat['data'][i];
-                var pageno:String = jsbit['title'];
-                var strings:Array = jsbit['text'].split('\n');
-                var momText:String = strings[0];
-                var cur:ConvoBranch = new ConvoBranch(pageno, momText);
-                for (var j:Number = 1; j < strings.length; j++) {
-                    if(strings[j] != "") {
+            for (var i:Number = 0; i < pages.length; i++) {
+                var momText:String = pages[i].getLine(0);
+                var cur:ConvoBranch = new ConvoBranch(pages[i].getTitle(), momText);
+                for (var j:Number = 1; j < pages[i].getNumberOfLines(); j++) {
+                    if(pages[i].getLine(j) != "") {
                         var regex:RegExp = /[\[\[\]\]]/g;
-                        var stripped:Array = strings[j].replace(regex, "").split("|");
+                        var stripped:Array = pages[i].getLine(j).replace(regex, "").split("|");
                         var response:String = stripped[0];
                         var targ:String = stripped[1];
                         cur.addResponse(response, targ);
