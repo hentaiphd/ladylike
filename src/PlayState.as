@@ -15,6 +15,7 @@ package
         [Embed(source = '../assets/roadlines.png')] public static var spriteRoadLines:Class;
         [Embed(source = '../assets/roomtone_lofi.mp3')] public static var sndBG:Class;
         [Embed(source = '../assets/bliphigh.mp3')] public static var sndHiBlip:Class;
+        [Embed(source='../assets/ladylike.json', mimeType="application/octet-stream")] public static var twineFile:Class;
 
         public var convo:Convo;
         public var convoTree:Array;
@@ -73,7 +74,7 @@ package
             textBoxMom.makeGraphic(140,57,0x88999999);
             add(textBoxMom);
 
-            var pages:Array = (new org.twine.TwineImporter()).getPages();
+            var pages:Array = (new org.twine.TwineImporter(twineFile)).getPages();
 
             conversationData = buildConversation(pages);
             var start_branch:ConvoBranch;
