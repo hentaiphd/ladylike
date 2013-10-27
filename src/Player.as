@@ -11,9 +11,11 @@ package
         private var running:Boolean = false;
         public var holding:Boolean = false;
         public var counter:int = 0;
+        private var slippery:Boolean = false;
 
-        public function Player(x:int,y:int):void{
+        public function Player(x:int,y:int,slippery:Boolean):void{
             super(x,y);
+            this.slippery = slippery;
             loadGraphic(ImgPlayer, true, true, 24, 40, true);
             frameWidth = 24;
             frameHeight = 40;
@@ -22,6 +24,11 @@ package
             addAnimation("run", [7,8,9,10], 8, true);
             addAnimation("standing", [11]);
             addAnimation("crouching", [3]);
+
+            if (!this.slippery) {
+                drag.x = runSpeed*8;
+                drag.y = runSpeed*3;
+            }
         }
 
         override public function update():void{
@@ -29,7 +36,11 @@ package
             borderCollide();
 
             acceleration.x = 0;
-            drag.x = 200;
+            if (!this.slippery) {
+                acceleration.y = 1000;
+            } else {
+                drag.x = 200;
+            }
 
             grabbing = false;
             if(FlxG.keys.DOWN){
@@ -37,28 +48,45 @@ package
                 play("crouching");
             } else {
                 if(FlxG.keys.LEFT) {
-                    facing = LEFT;
-                    drag.x += runSpeed;
-                    acceleration.x -= 60;
-                    play("run");
+                    this.runLeft();
                 } else if(FlxG.keys.RIGHT){
-                    facing = RIGHT;
-                    drag.x += runSpeed;
-                    acceleration.x += 60;
-                    play("run");
+                    this.runRight();
                 } else {
                     play("standing");
                     running = false;
                 }
             }
 
-            if (FlxG.keys.justReleased("RIGHT")) {
-                decelerate();
+            if (this.slippery) {
+                if (FlxG.keys.justReleased("RIGHT")) {
+                    decelerate();
+                }
+                if (FlxG.keys.justReleased("LEFT")) {
+                    decelerate();
+                }
             }
+        }
 
-            if (FlxG.keys.justReleased("LEFT")) {
-                decelerate();
+        public function runLeft():void{
+            facing = LEFT;
+            if (this.slippery){
+                drag.x += runSpeed;
+                acceleration.x -= 60;
+            } else {
+                x -= runSpeed;
             }
+            play("run");
+        }
+
+        public function runRight():void{
+            facing = RIGHT;
+            if (this.slippery){
+                drag.x += runSpeed;
+                acceleration.x += 60;
+            } else {
+                x += runSpeed;
+            }
+            play("run");
         }
 
         public function decelerate():void{

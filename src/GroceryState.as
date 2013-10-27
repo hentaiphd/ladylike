@@ -23,7 +23,7 @@ package
             timerText = new FlxText(135,10,200,timeSec.toString());
             add(timerText);
 
-            player = new Player(150,180);
+            player = new Player(150,180, true);
             add(player);
 
             eggs = new Array(10);
