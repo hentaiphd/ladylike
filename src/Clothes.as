@@ -4,7 +4,6 @@ package
     import org.flixel.plugin.photonstorm.*;
 
     public class Clothes extends FlxSprite{
-        [Embed(source="../assets/girl_sprites.png")] private var ImgPlayer:Class;
 
         public var outfits:Array;
         public var counter:int;
@@ -16,7 +15,6 @@ package
 
         public function Clothes(x:int,y:int):void{
             super(x,y);
-            loadGraphic(ImgPlayer, true, true, 24, 40, true);
 
             counter = 0;
 
