@@ -64,7 +64,7 @@ package{
 
         public function getInput():String{
             if (FlxG.keys.justPressed("ENTER")){
-                return curBranch.responsePointers[this.selector.getIndices()[1]];
+                return curBranch.responsePointers[this.selector.getIndex()];
             }
             return PlayState.NO_RESULT;
         }
