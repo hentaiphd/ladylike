@@ -32,7 +32,7 @@ package{
             for(var i:int = 0; i < choicesRef.length; i++){
                 yCalc += 30;
                 choices[i] = oneReply(choicesRef[i],x,yCalc);
-                choicePos[i] = yCalc;
+                choicePos[i] = yCalc + 5;
             }
         }
 
@@ -44,7 +44,11 @@ package{
 
         public function start():void{
             this.momSays();
-            selector = new Selector(this.selectX-5,this.choicePos);
+            var xArr:Array = new Array();
+            for (var i:int = 0; i < this.choicePos.length; i++) {
+                xArr.push(this.selectX-5);
+            }
+            selector = new Selector(xArr,this.choicePos);
             FlxG.state.add(selector);
         }
 
@@ -60,7 +64,7 @@ package{
 
         public function getInput():String{
             if (FlxG.keys.justPressed("ENTER")){
-                return curBranch.responsePointers[this.selector.posY];
+                return curBranch.responsePointers[this.selector.getIndices()[1]];
             }
             return PlayState.NO_RESULT;
         }

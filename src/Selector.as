@@ -4,12 +4,15 @@ package{
     public class Selector extends FlxSprite{
         [Embed(source = '../assets/bliplow.mp3')] public static var sndLoBlip:Class;
 
-        public var refArray:Array;
-        public var posY:int = 0;
+        private var xIndex:int = 0;
+        private var refXArray:Array;
+        private var yIndex:int = 0;
+        private var refYArray:Array;
 
-        public function Selector(x:int,yArray:Array):void{
-            super(x,y = yArray[0] + 5);
-            refArray = yArray;
+        public function Selector(xArray:Array,yArray:Array):void{
+            super(xArray[0],y = yArray[0] + 5);
+            refYArray = yArray;
+            refXArray = xArray;
             this.makeGraphic(5,5,0xFFFFFFFF);
             this.width = 5;
             this.height = 5;
@@ -18,21 +21,43 @@ package{
         override public function update():void{
             if(FlxG.keys.justPressed("DOWN")){
                 FlxG.play(sndLoBlip);
-                if(posY < refArray.length - 1){
-                    posY++;
+                if(yIndex < refYArray.length - 1){
+                    yIndex++;
                 } else {
-                    posY = 0;
+                    yIndex = 0;
                 }
             } else if (FlxG.keys.justPressed("UP")){
                 FlxG.play(sndLoBlip);
-                if(posY > 0){
-                    posY--;
+                if(yIndex > 0){
+                    yIndex--;
                 } else {
-                    posY = refArray.length - 1;
+                    yIndex = refYArray.length - 1;
                 }
             }
+            if(FlxG.keys.justPressed("LEFT")){
+                FlxG.play(sndLoBlip);
+                if(xIndex > 0){
+                    xIndex--;
+                } else {
+                    xIndex = refXArray.length - 1;
+                }
+            } else if (FlxG.keys.justPressed("RIGHT")){
+                FlxG.play(sndLoBlip);
+                if(xIndex < refXArray.length - 1){
+                    xIndex++;
+                } else {
+                    xIndex = 0;
+                }
+            }
+            x = refXArray[xIndex];
+            y = refYArray[yIndex];
+        }
 
-            y = refArray[posY] + 5;
+        public function getIndices():Array {
+            var ret:Array = new Array();
+            ret.push(xIndex);
+            ret.push(yIndex);
+            return ret;
         }
     }
 }

@@ -19,7 +19,6 @@ package
 
         public var convo:Convo;
         public var convoTree:Array;
-        public var selector:Selector;
         public var posX:int = 162;
         public var posY:int = 113;
         public var conversationData:Array;
