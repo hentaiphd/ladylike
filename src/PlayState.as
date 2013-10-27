@@ -38,7 +38,7 @@ package
         public var textBoxReply:FlxSprite;
 
         override public function create():void{
-            bgRoad = new FlxSprite(-25, 0);
+            bgRoad = new FlxSprite(-20, 0);
             bgRoad.loadGraphic(spriteRoad, true, true, 360, 240, true);
             bgRoad.addAnimation("run", [0, 1, 2, 3], 6, true);
             add(bgRoad);
