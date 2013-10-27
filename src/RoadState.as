@@ -3,7 +3,10 @@ package
     import org.flixel.*;
 
     public class RoadState extends FlxState{
-        [Embed(source = '../assets/field.png')] public static var spriteBG:Class;
+        [Embed(source = '../assets/OutsideLayer0.png')] public static var spriteBG0:Class;
+        [Embed(source = '../assets/OutsideLayer1.png')] public static var spriteBG1:Class;
+        [Embed(source = '../assets/OutsideLayer2.png')] public static var spriteBG2:Class;
+        [Embed(source = '../assets/Brush.png')] public static var spriteBrush:Class;
         [Embed(source = '../assets/outdoorloop_lofi.mp3')] public static var sndBG:Class;
         [Embed(source = '../assets/bird1.mp3')] public static var sndBird1:Class;
         [Embed(source = '../assets/bird2_l.mp3')] public static var sndBird2L:Class;
@@ -34,8 +37,17 @@ package
             ground = new Floor();
             add(ground);
 
-            var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
-            add(bg);
+            var bg0:FlxSprite = new FlxSprite(0, 0, spriteBG0);
+            add(bg0);
+            var bg1:FlxSprite = new FlxSprite(0, 0, spriteBG1);
+            add(bg1);
+            var bg2:FlxSprite = new FlxSprite(0, 0, spriteBG2);
+            add(bg2);
+            var brush:FlxSprite = new FlxSprite(0, 0);
+            brush.loadGraphic(spriteBrush, true, true, 320, 240, true);
+            brush.addAnimation("run", [0, 1], 1);
+            add(brush);
+            brush.play("run");
 
             awayText = new FlxText(135,10,200,"She's really gone...");
             add(awayText);
