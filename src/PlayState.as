@@ -99,7 +99,6 @@ package
 
         override public function update():void{
             super.update();
-
             var nextSentence:String = convo.getInput();
             if (int(nextSentence) > 0){
                 FlxG.play(sndHiBlip);
