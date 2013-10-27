@@ -8,7 +8,7 @@ package{
         private var refXArray:Array;
         private var refYArray:Array;
 
-        public function Selector(xArray:Array,yArray:Array):void{
+        public function Selector(xArray:Array, yArray:Array):void{
             super(xArray[0],y = yArray[0] + 5);
             refYArray = yArray;
             refXArray = xArray;

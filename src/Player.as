@@ -3,7 +3,8 @@ package
     import org.flixel.*;
 
     public class Player extends FlxSprite{
-        [Embed(source="../assets/girl_sprites.png")] private var ImgPlayer:Class;
+        [Embed(source="../assets/girl_sprites_new.png")] private var ImgPlayer:Class;
+
         private var runSpeed:int = 2;
         public var grabbing:Boolean = false;
         private var _jumppower:int = 290;
@@ -16,14 +17,14 @@ package
         public function Player(x:int,y:int,slippery:Boolean):void{
             super(x,y);
             this.slippery = slippery;
-            loadGraphic(ImgPlayer, true, true, 24, 40, true);
-            frameWidth = 24;
-            frameHeight = 40;
+            loadGraphic(ImgPlayer, true, true, 34, 36, true);
+            frameWidth = 34;
+            frameHeight = 36;
             width = 10;
 
             addAnimation("run", [7,8,9,10], 8, true);
-            addAnimation("standing", [11]);
-            addAnimation("crouching", [3]);
+            addAnimation("standing", [0]);
+            addAnimation("crouching", [1, 2], 7, false);
 
             if (!this.slippery) {
                 drag.x = runSpeed*8;
