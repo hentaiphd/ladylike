@@ -25,7 +25,7 @@ package
         public static const RESTART:String = "-42";
         public static const momTextX:int = 25;
         public static const momTextY:int = 117;
-        public static const girlTextX:int = 25;
+        public static const girlTextX:int = 20;
         public static const girlTextY:int = 135;
 
         public var bgFrontSeats:WigglySprite;
@@ -60,12 +60,12 @@ package
                 }
             }
 
-            textBoxReply = new FlxSprite(girlTextX,girlTextY);
-            textBoxReply.makeGraphic(160,90,0x88999999);
+            textBoxReply = new FlxSprite(girlTextX-5,girlTextY);
+            textBoxReply.makeGraphic(240,90,0x88999999);
             add(textBoxReply);
 
-            textBoxMom = new FlxSprite(momTextX,momTextY);
-            textBoxMom.makeGraphic(140,57,0x88999999);
+            textBoxMom = new FlxSprite(momTextX-5,momTextY);
+            textBoxMom.makeGraphic(200,37,0xFF000000);
             add(textBoxMom);
 
             var pages:Array = (new org.twine.TwineImporter(twineFile)).getPages();

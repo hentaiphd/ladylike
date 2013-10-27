@@ -21,7 +21,7 @@ package{
 
         public function momSays():void{
             var words:String = this.curBranch.momSentence;
-            momWords = new FlxText(PlayState.momTextX,PlayState.momTextY,130,words);
+            momWords = new FlxText(PlayState.momTextX,PlayState.momTextY,195,words);
             FlxG.state.add(momWords);
         }
 
