@@ -6,14 +6,10 @@ package
     import flash.debugger.enterDebugger;
 
     public class PlayState extends FlxState{
-        [Embed(source = '../assets/car.png')] public static var spriteCar:Class;
-        [Embed(source = '../assets/backseat.png')] public static var spriteBackseat:Class;
-        [Embed(source = '../assets/frontseat.png')] public static var spriteFrontseat:Class;
-        [Embed(source = '../assets/dash.png')] public static var spriteDash:Class;
-        [Embed(source = '../assets/wheel.png')] public static var spriteWheel:Class;
-        [Embed(source = '../assets/hair.png')] public static var spriteHair:Class;
-        [Embed(source = '../assets/road.png')] public static var spriteRoad:Class;
-        [Embed(source = '../assets/roadlines.png')] public static var spriteRoadLines:Class;
+        [Embed(source = '../assets/CarLayer2.png')] public static var spriteFrontseat:Class;
+        [Embed(source = '../assets/CarLayer1.png')] public static var spriteDash:Class;
+        [Embed(source = '../assets/CarLayer0.png')] public static var spriteRoad:Class;
+        [Embed(source = '../assets/GirlFidget.png')] public static var spriteGirl:Class;
         [Embed(source = '../assets/roomtone_lofi.mp3')] public static var sndBG:Class;
         [Embed(source = '../assets/bliphigh.mp3')] public static var sndHiBlip:Class;
         [Embed(source='../assets/ladylike.json', mimeType="application/octet-stream")] public static var twineFile:Class;
@@ -32,28 +28,28 @@ package
         public static const girlTextX:int = 25;
         public static const girlTextY:int = 135;
 
-        public var bgBackSeats:WigglySprite;
         public var bgFrontSeats:WigglySprite;
         public var bgDash:WigglySprite;
-        public var bgHair:WigglySprite;
-        public var bgWheel:WigglySprite;
         public var bgRoad:FlxSprite;
+        public var girl:FlxSprite;
         public var textBoxMom:FlxSprite;
         public var textBoxReply:FlxSprite;
 
         override public function create():void{
-            bgRoad = new FlxSprite(0, 0, spriteRoad);
+            bgRoad = new FlxSprite(-25, 0);
+            bgRoad.loadGraphic(spriteRoad, true, true, 360, 240, true);
+            bgRoad.addAnimation("run", [0, 1, 2, 3], 6, true);
             add(bgRoad);
-            bgDash = new WigglySprite(0, 0, spriteDash);
+            bgRoad.play("run");
+            bgDash = new WigglySprite(-25, 0, spriteDash);
             add(bgDash);
-            bgWheel = new WigglySprite(0, 0, spriteWheel);
-            add(bgWheel);
-            bgHair = new WigglySprite(0, 0, spriteHair);
-            add(bgHair);
-            bgFrontSeats = new WigglySprite(0, 0, spriteFrontseat);
+            bgFrontSeats = new WigglySprite(-25, 0, spriteFrontseat);
             add(bgFrontSeats);
-            bgBackSeats = new WigglySprite(0, 0, spriteBackseat);
-            add(bgBackSeats);
+            girl = new WigglySprite(244, 190);
+            girl.loadGraphic(spriteGirl, true, true, 78, 54, true);
+            girl.addAnimation("run", [0, 1, 2], 2, true);
+            add(girl);
+            girl.play("run");
 
            if(FlxG.music == null){
                 FlxG.playMusic(sndBG);
@@ -63,12 +59,6 @@ package
                     FlxG.playMusic(sndBG);
                 }
             }
-
-            var roadLines:FlxSprite = new FlxSprite(176, 40);
-            roadLines.loadGraphic(spriteRoadLines, true, true, 6, 38, true);
-            roadLines.addAnimation("running", [0, 1, 2], .8);
-            add(roadLines);
-            roadLines.play("running");
 
             textBoxReply = new FlxSprite(girlTextX,girlTextY);
             textBoxReply.makeGraphic(160,90,0x88999999);
@@ -87,10 +77,6 @@ package
                     start_branch = conversationData[i];
                 }
             }
-
-            var testBG:FlxSprite = new FlxSprite(0,0);
-            testBG.loadGraphic(spriteCar, true, true, 320, 240, true);
-            add(testBG);
 
             convo = new Convo(start_branch);
             convo.newConvo(girlTextX,girlTextY);
