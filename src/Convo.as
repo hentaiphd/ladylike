@@ -30,14 +30,14 @@ package{
             this.selectY = y;
             var yCalc:int = y;
             for(var i:int = 0; i < choicesRef.length; i++){
-                yCalc += 30;
+                yCalc += 20;
                 choices[i] = oneReply(choicesRef[i],x,yCalc);
                 choicePos[i] = yCalc + 5;
             }
         }
 
         public function oneReply(i:String,x:int,y:int):FlxText{
-            var newReply:FlxText = new FlxText(x,y,150,i);
+            var newReply:FlxText = new FlxText(x,y,200,i);
             FlxG.state.add(newReply);
             return newReply;
         }

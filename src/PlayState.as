@@ -30,7 +30,7 @@ package
         public static const momTextX:int = 25;
         public static const momTextY:int = 117;
         public static const girlTextX:int = 25;
-        public static const girlTextY:int = 125;
+        public static const girlTextY:int = 135;
 
         public var bgBackSeats:WigglySprite;
         public var bgFrontSeats:WigglySprite;
