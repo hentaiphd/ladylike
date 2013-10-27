@@ -6,6 +6,7 @@ package
         [Embed(source = '../assets/OutsideLayer0.png')] public static var spriteBG0:Class;
         [Embed(source = '../assets/OutsideLayer1.png')] public static var spriteBG1:Class;
         [Embed(source = '../assets/OutsideLayer2.png')] public static var spriteBG2:Class;
+        [Embed(source = '../assets/Clouds.png')] public static var spriteClouds:Class;
         [Embed(source = '../assets/Brush.png')] public static var spriteBrush:Class;
         [Embed(source = '../assets/outdoorloop_lofi.mp3')] public static var sndBG:Class;
         [Embed(source = '../assets/bird1.mp3')] public static var sndBird1:Class;
@@ -31,6 +32,7 @@ package
         public var timeFrame:Number = 0;
         public var timeSec:Number = 0;
         public var flowers:Array;
+        public var clouds:FlxSprite;
         public var awayText:FlxText;
 
         override public function create():void{
@@ -39,6 +41,8 @@ package
 
             var bg0:FlxSprite = new FlxSprite(0, 0, spriteBG0);
             add(bg0);
+            clouds = new FlxSprite(0, 0, spriteClouds);
+            add(clouds);
             var bg1:FlxSprite = new FlxSprite(0, 0, spriteBG1);
             add(bg1);
             var bg2:FlxSprite = new FlxSprite(0, 0, spriteBG2);
@@ -105,6 +109,8 @@ package
 
             if(timeFrame%100 == 0){
                 timeSec++;
+                clouds.x -= 1;
+                clouds.y -= 1;
             }
 
             if(timeSec == 5){
