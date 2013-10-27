@@ -57,7 +57,7 @@ package
             if(FlxG.keys.justPressed("ENTER"))
             {
                 FlxG.mouse.hide();
-                FlxG.switchState(new DressingState());
+                FlxG.switchState(new PlayState());
             }
         }
     }

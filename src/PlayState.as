@@ -10,6 +10,8 @@ package
         [Embed(source = '../assets/CarLayer1.png')] public static var spriteDash:Class;
         [Embed(source = '../assets/CarLayer0.png')] public static var spriteRoad:Class;
         [Embed(source = '../assets/GirlFidget.png')] public static var spriteGirl:Class;
+        [Embed(source = '../assets/GirlSpeech.png')] public static var spriteGirlSpeech:Class;
+        [Embed(source = '../assets/MomSpeech.png')] public static var spriteMomSpeech:Class;
         [Embed(source = '../assets/roomtone_lofi.mp3')] public static var sndBG:Class;
         [Embed(source = '../assets/bliphigh.mp3')] public static var sndHiBlip:Class;
         [Embed(source='../assets/ladylike.json', mimeType="application/octet-stream")] public static var twineFile:Class;
@@ -23,9 +25,9 @@ package
         public static const CONV_END:Number = -69;
         public static const NO_RESULT:String = "-1";
         public static const RESTART:String = "-42";
-        public static const momTextX:int = 25;
+        public static const momTextX:int = 17;
         public static const momTextY:int = 117;
-        public static const girlTextX:int = 20;
+        public static const girlTextX:int = 15;
         public static const girlTextY:int = 135;
 
         public var bgFrontSeats:WigglySprite;
@@ -50,6 +52,10 @@ package
             girl.addAnimation("run", [0, 1, 2], 2, true);
             add(girl);
             girl.play("run");
+            var girlSpeech:FlxSprite = new FlxSprite(220, 225, spriteGirlSpeech);
+            add(girlSpeech);
+            var momSpeech:FlxSprite = new FlxSprite(30, 80, spriteMomSpeech);
+            add(momSpeech);
 
            if(FlxG.music == null){
                 FlxG.playMusic(sndBG);
@@ -60,12 +66,12 @@ package
                 }
             }
 
-            textBoxReply = new FlxSprite(girlTextX-5,girlTextY);
-            textBoxReply.makeGraphic(240,90,0x88999999);
+            textBoxReply = new FlxSprite(girlTextX-8,girlTextY);
+            textBoxReply.makeGraphic(240,90,0x99FFFFFF);
             add(textBoxReply);
 
             textBoxMom = new FlxSprite(momTextX-5,momTextY);
-            textBoxMom.makeGraphic(200,37,0xFF000000);
+            textBoxMom.makeGraphic(225,37,0xFF000000);
             add(textBoxMom);
 
             var pages:Array = (new org.twine.TwineImporter(twineFile)).getPages();

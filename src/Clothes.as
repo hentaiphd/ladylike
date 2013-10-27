@@ -4,6 +4,7 @@ package
     import org.flixel.plugin.photonstorm.*;
 
     public class Clothes extends FlxSprite{
+        [Embed(source="../assets/girl_sprites_new.png")] private var ImgPlayer:Class;
 
         public var outfits:Array;
         public var counter:int;
