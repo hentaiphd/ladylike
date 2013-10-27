@@ -41,7 +41,7 @@ package
 
             var bg0:FlxSprite = new FlxSprite(0, 0, spriteBG0);
             add(bg0);
-            clouds = new FlxSprite(0, 0, spriteClouds);
+            clouds = new FlxSprite(-100, 0, spriteClouds);
             add(clouds);
             var bg1:FlxSprite = new FlxSprite(0, 0, spriteBG1);
             add(bg1);
@@ -109,7 +109,7 @@ package
 
             if(timeFrame%100 == 0){
                 timeSec++;
-                clouds.x -= 1;
+                clouds.x += 1;
                 clouds.y -= 1;
             }
 
