@@ -4,9 +4,8 @@ package{
     public class Selector extends FlxSprite{
         [Embed(source = '../assets/bliplow.mp3')] public static var sndLoBlip:Class;
 
-        private var xIndex:int = 0;
+        private var _index:int = 0;
         private var refXArray:Array;
-        private var yIndex:int = 0;
         private var refYArray:Array;
 
         public function Selector(xArray:Array,yArray:Array):void{
@@ -18,46 +17,38 @@ package{
             this.height = 5;
         }
 
-        override public function update():void{
-            if(FlxG.keys.justPressed("DOWN")){
-                FlxG.play(sndLoBlip);
-                if(yIndex < refYArray.length - 1){
-                    yIndex++;
-                } else {
-                    yIndex = 0;
-                }
-            } else if (FlxG.keys.justPressed("UP")){
-                FlxG.play(sndLoBlip);
-                if(yIndex > 0){
-                    yIndex--;
-                } else {
-                    yIndex = refYArray.length - 1;
-                }
+        public static function newFromPoints(points:Array):Selector {
+            var xPositions:Array = new Array();
+            var yPositions:Array = new Array();
+            for(var i:int = 0; i < points.length; i++) {
+                xPositions.push(points[i].x);
+                yPositions.push(points[i].y);
             }
-            if(FlxG.keys.justPressed("LEFT")){
-                FlxG.play(sndLoBlip);
-                if(xIndex > 0){
-                    xIndex--;
-                } else {
-                    xIndex = refXArray.length - 1;
-                }
-            } else if (FlxG.keys.justPressed("RIGHT")){
-                FlxG.play(sndLoBlip);
-                if(xIndex < refXArray.length - 1){
-                    xIndex++;
-                } else {
-                    xIndex = 0;
-                }
-            }
-            x = refXArray[xIndex];
-            y = refYArray[yIndex];
+            return new Selector(xPositions, yPositions);
         }
 
-        public function getIndices():Array {
-            var ret:Array = new Array();
-            ret.push(xIndex);
-            ret.push(yIndex);
-            return ret;
+        override public function update():void{
+            if(FlxG.keys.justPressed("DOWN") || FlxG.keys.justPressed("RIGHT")){
+                FlxG.play(sndLoBlip);
+                if(_index < refYArray.length - 1){
+                    _index++;
+                } else {
+                    _index = 0;
+                }
+            } else if (FlxG.keys.justPressed("UP") || FlxG.keys.justPressed("LEFT")){
+                FlxG.play(sndLoBlip);
+                if(_index > 0){
+                    _index--;
+                } else {
+                    _index = refYArray.length - 1;
+                }
+            }
+            x = refXArray[_index];
+            y = refYArray[_index];
+        }
+
+        public function getIndex():int{
+            return _index;
         }
     }
 }
