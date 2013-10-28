@@ -61,7 +61,7 @@ package
             if(numleft == 0){
                 momsays.text = "It's getting late--we have to go. Try this last one on that I picked out for you.";
                 if(timeSec%5 == 0){
-                    FlxG.switchState(new LeaveMallState());
+                    FlxG.switchState(new TextState("You're welcome for the nice clothes. Let's go.", new EndState("")));
                 }
             }
         }
