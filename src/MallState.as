@@ -5,6 +5,7 @@ package {
         [Embed(source = '../assets/MallLayer0.png')] public static var spriteBG:Class;
         [Embed(source = '../assets/MallLayer1.png')] public static var spriteFriend:Class;
         [Embed(source = '../assets/MallLayer2.png')] public static var spriteGirl:Class;
+        [Embed(source = '../assets/foodcourtloop.mp3')] public static var sndBG:Class;
 
         override public function create():void
         {
@@ -25,6 +26,8 @@ package {
             t.size = 14;
             t.alignment = "center";
             add(t);
+
+            FlxG.playMusic(sndBG);
         }
 
         override public function update():void
