@@ -7,6 +7,10 @@ package
         [Embed(source = '../assets/CootieHand.png')] public static var spriteHand:Class;
         [Embed(source = '../assets/CootieMove.png')] public static var spriteMove:Class;
         [Embed(source = '../assets/CootieCatcher.png')] public static var spriteOpen:Class;
+        [Embed(source = '../assets/paper1.mp3')] public static var sndPaper1:Class;
+        [Embed(source = '../assets/paper2.mp3')] public static var sndPaper2:Class;
+        [Embed(source = '../assets/paper3.mp3')] public static var sndPaper3:Class;
+        [Embed(source = '../assets/papercorner.mp3')] public static var sndPaperCorner:Class;
 
         public var promptText:FlxText;
         private var selector:Selector;
@@ -64,6 +68,14 @@ package
             if(choice == NO_RESULT){
 
             } else {
+                var pick:Number = FlxG.random() * 3;
+                if (pick > 2) {
+                    FlxG.play(sndPaper1, .5);
+                } else if (pick > 1) {
+                    FlxG.play(sndPaper2, .5);
+                } else {
+                    FlxG.play(sndPaper3, .5);
+                }
                 if (curState == 0) {
                     if (choice == 0) {
                         hand.play("move1");
