@@ -105,8 +105,8 @@ package
             } else if(nextSentence == "RAND_END") {
                 FlxG.music.stop();
                 var pick:Number = FlxG.random()*4;
-                if (pick > 3) {
-                    FlxG.switchState(new TextState("Playing cootie catcher", new CootieState()));
+                if (true || pick > 3) {
+                    FlxG.switchState(new TextState("Wait for me at\nthe food court", new MallState()));
                 } else if (pick > 2){
                     FlxG.switchState(new TextState("Going shopping", new DressingState()))
                 } else if (pick > 1) {
