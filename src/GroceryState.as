@@ -15,6 +15,7 @@ package
         public var lose:Boolean = false;
 
         override public function create():void{
+            super._create(true, true);
             ground = new Floor();
             add(ground);
 

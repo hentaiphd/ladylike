@@ -13,10 +13,12 @@ package
         public var holding:Boolean = false;
         public var counter:int = 0;
         private var slippery:Boolean = false;
+        private var grabDown:Boolean = false;
 
-        public function Player(x:int,y:int,slippery:Boolean):void{
+        public function Player(x:int,y:int,slippery:Boolean,grabDown:Boolean):void{
             super(x,y);
             this.slippery = slippery;
+            this.grabDown = grabDown;
             loadGraphic(ImgPlayer, true, true, 34, 36, true);
             frameWidth = 34;
             frameHeight = 36;
@@ -44,7 +46,10 @@ package
             }
 
             grabbing = false;
-            if(FlxG.keys.DOWN){
+            if(FlxG.keys.DOWN && this.grabDown){
+                grabbing = true;
+                play("crouching");
+            } else if(FlxG.keys.UP && !this.grabDown){
                 grabbing = true;
                 play("crouching");
             } else {

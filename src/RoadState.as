@@ -32,7 +32,7 @@ package
         public var awayText:FlxText;
 
         override public function create():void{
-            super.create();
+            super._create(false, true);
             makeGround();
             var bg0:FlxSprite = new FlxSprite(0, 0, spriteBG0);
             add(bg0);
@@ -51,6 +51,8 @@ package
             awayText = new FlxText(135,10,200,"She's really gone...");
             add(awayText);
 
+            makePlayer();
+
             flowers = new Array(10);
             for(var i:int = 0; i < flowers.length; i++){
                 var flower:Flower = new Flower((30*i+Math.random()*40), 210+((Math.random()*8)-4));
@@ -60,7 +62,6 @@ package
 
             FlxG.playMusic(sndBG);
             FlxG.play(sndDriveAway);
-            makePlayer();
         }
 
 

@@ -5,11 +5,11 @@ package {
         public var player:Player;
         public var ground:Floor;
 
-        override public function create():void {
+        public function _create(slippery:Boolean,grabDown:Boolean):void {
             super.create();
             ground = new Floor();
 
-            player = new Player(150,180,false);
+            player = new Player(150,180,false,grabDown);
         }
 
         public function makeGround():void {
