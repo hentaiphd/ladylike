@@ -99,9 +99,12 @@ package
                 convo = new Convo(piece);
                 convo.newConvo(girlTextX,girlTextY);
                 convo.start();
-            } else if (nextSentence == "CONVO_END") {
+            } else if (nextSentence == "ANGRY_END") {
                 FlxG.music.stop();
                 FlxG.switchState(new DoorState());
+            } else if(nextSentence == "RAND_END") {
+                FlxG.music.stop();
+                FlxG.switchState(new ToyStoreState());
             } else if (nextSentence == "RESTART") {
                 FlxG.switchState(new PlayState());
             }

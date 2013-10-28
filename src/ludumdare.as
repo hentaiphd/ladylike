@@ -8,7 +8,7 @@ package
     {
         public function ludumdare()
         {
-            super(320,240,ToyStoreState,2);
+            super(320,240,MenuState,2);
         }
     }
 }
