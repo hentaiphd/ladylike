@@ -21,7 +21,7 @@ package {
             add(girl);
 
             var t:FlxText;
-            t = new FlxText(0,20,FlxG.width,"Hey Nina, wanna play cootie catcher?");
+            t = new FlxText(0,20,FlxG.width,"Hey, wanna play cootie catcher?");
             t.size = 14;
             t.alignment = "center";
             add(t);
