@@ -34,7 +34,7 @@ package
             timeLeft++;
             if(timeLeft%125 == 0) {
                 timerText.text = "YOU LOSE";
-                this.kill();
+                FlxG.switchState(new TextState("U broke a egge", new EndState("")));
             }
         }
 

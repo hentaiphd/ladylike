@@ -28,5 +28,9 @@ package {
                 }
             }
         }
+
+        override public function endCallback():void{
+            FlxG.switchState(new TextState("What is this supposed to say", new EndState("")));
+        }
     }
 }
