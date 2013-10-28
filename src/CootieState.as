@@ -27,6 +27,12 @@ package
             hand.addAnimation("move4", [0, 1, 0, 1], 3, false);
             hand.addAnimation("move5", [0, 1, 0, 1, 0], 3, false);
             hand.addAnimation("move6", [0, 1, 0, 1, 0, 1], 3, false);
+            hand.addAnimation("amove1", [1], 3, false);
+            hand.addAnimation("amove2", [1, 0], 3, false);
+            hand.addAnimation("amove3", [1, 0, 1], 3, false);
+            hand.addAnimation("amove4", [1, 0, 1, 0], 3, false);
+            hand.addAnimation("amove5", [1, 0, 1, 0, 1], 3, false);
+            hand.addAnimation("amove6", [1, 0, 1, 0, 1, 0], 3, false);
             hand.addAnimation("still", [2]);
             add(hand);
             hand.play("still");
@@ -35,7 +41,7 @@ package
             //add(promptText);
 
             choicePositions = new Array(
-                new FlxPoint(150, 100), new FlxPoint(150, 130),
+                new FlxPoint(140, 100), new FlxPoint(140, 130),
                 new FlxPoint(200, 100), new FlxPoint(200, 130)
             );
 
@@ -67,15 +73,15 @@ package
                 } else if (curState == 1) {
                     if (curConfig == 0){
                         if (choice == 0) {
-                            hand.play("move6");
+                            hand.play("amove6");
                             curConfig = 1;
                         } else if (choice == 1){
-                            hand.play("move6");
+                            hand.play("amove6");
                             curConfig = 1;
                         } else if (choice == 2) {
-                            hand.play("move5");
+                            hand.play("amove5");
                         } else if (choice == 3) {
-                            hand.play("move4");
+                            hand.play("amove4");
                             curConfig = 1;
                         }
                     } else if (curConfig == 1){
