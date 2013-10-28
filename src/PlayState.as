@@ -104,7 +104,7 @@ package
                 FlxG.switchState(new TextState("GET OUT OF THE CAR", new RoadState()));
             } else if(nextSentence == "RAND_END") {
                 FlxG.music.stop();
-                var pick:Number = FlxG.random()*4;
+                var pick:Number = FlxG.random()*5;
                 if (pick > 3) {
                     FlxG.switchState(new TextState("Wait for me at\nthe food court", new MallState()));
                 } else if (pick > 2){

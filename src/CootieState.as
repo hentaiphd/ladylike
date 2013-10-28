@@ -62,20 +62,23 @@ package
             add(selector);
         }
 
+        public function playPaperSound():void{
+            var pick:Number = FlxG.random() * 3;
+            if (pick > 2) {
+                FlxG.play(sndPaper1, .7);
+            } else if (pick > 1) {
+                FlxG.play(sndPaper2, .7);
+            } else {
+                FlxG.play(sndPaper3, .7);
+            }
+        }
+
         override public function update():void{
             super.update();
             var choice:int = getChoice();
             if(choice == NO_RESULT){
-
             } else {
-                var pick:Number = FlxG.random() * 3;
-                if (pick > 2) {
-                    FlxG.play(sndPaper1, .7);
-                } else if (pick > 1) {
-                    FlxG.play(sndPaper2, .7);
-                } else {
-                    FlxG.play(sndPaper3, .7);
-                }
+                playPaperSound();
                 if (curState == 0) {
                     if (choice == 0) {
                         hand.play("move1");
