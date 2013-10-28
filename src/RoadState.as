@@ -121,7 +121,7 @@ package
 
         override public function endCallback():void{
             FlxG.music.stop();
-            FlxG.switchState(new DoorInState());
+            FlxG.switchState(new TextState("I came back to see if you're ready to behave.", new EndState("That kind of behavior is unacceptable, Nina... stop crying--I only left you there for like ten seconds.")));
         }
     }
 }
