@@ -29,14 +29,9 @@ package
             add(t2);
 
             t4:FlxText;
-            t4 = new FlxText(40,40,250,"with audio by Deckman Coss");
+            t4 = new FlxText(40,40,250,"with audio by Deckman Coss\nand art by Winnie Song");
             t4.alignment = "center";
             add(t4);
-
-            var jam:FlxText;
-            jam = new FlxText(40,50,250,"Ludum Dare 27");
-            jam.alignment = "center";
-            add(jam);
 
             t5:FlxText;
             t5 = new FlxText(40,210,250,"To play, use the ENTER and arrow keys.");
