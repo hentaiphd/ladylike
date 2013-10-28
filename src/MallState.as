@@ -7,6 +7,15 @@ package {
         [Embed(source = '../assets/MallLayer2.png')] public static var spriteGirl:Class;
         [Embed(source = '../assets/foodcourtloop.mp3')] public static var sndBG:Class;
 
+        private var prompt:String;
+        private var nextState:FlxState;
+
+        public function MallState(prompt:String, nextState:FlxState){
+            super();
+            this.prompt = prompt;
+            this.nextState = nextState;
+        }
+
         override public function create():void
         {
             endTime = 5;
@@ -22,7 +31,7 @@ package {
             add(girl);
 
             var t:FlxText;
-            t = new FlxText(0,20,FlxG.width,"Hey, wanna play cootie catcher?");
+            t = new FlxText(0,20,FlxG.width,prompt);
             t.size = 14;
             t.alignment = "center";
             add(t);
@@ -36,7 +45,7 @@ package {
         }
 
         override public function endCallback():void {
-            FlxG.switchState(new CootieState());
+            FlxG.switchState(this.nextState);
         }
     }
 }

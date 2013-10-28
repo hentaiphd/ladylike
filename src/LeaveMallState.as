@@ -25,7 +25,7 @@ package
             }
 
             if(timeSec == 2){
-                FlxG.switchState(new EndState());
+                FlxG.switchState(new EndState(""));
             }
 
         }

@@ -25,7 +25,7 @@ package
             }
 
             if(timeSec == 2){
-                FlxG.switchState(new EndState());
+                FlxG.switchState(new EndState("That kind of behavior is unacceptable, Nina... stop crying--I only left you there for like ten seconds."));
             }
 
         }

@@ -2,7 +2,7 @@ package
 {
     import org.flixel.*;
 
-    public class CootieState extends FlxState{
+    public class CootieState extends TimedState{
         [Embed(source = '../assets/CootieLayer0.png')] public static var spriteBG:Class;
         [Embed(source = '../assets/CootieHand.png')] public static var spriteHand:Class;
         [Embed(source = '../assets/CootieMove.png')] public static var spriteMove:Class;
@@ -19,6 +19,7 @@ package
         private var _open:FlxSprite;
         private var curState:int = 0;
         private var curConfig:int = 0;
+        private var _endTime:int = -1;
 
         private static var NO_RESULT:int = -1;
 
@@ -75,6 +76,9 @@ package
 
         override public function update():void{
             super.update();
+            if (timeSec - endTime >= 5){
+                FlxG.switchState(new MallState("Bye.", new EndState("")));
+            }
             var choice:int = getChoice();
             if(choice == NO_RESULT){
             } else {
@@ -128,6 +132,7 @@ package
                     add(bgHand);
                     _open.y = -190;
                     add(_open);
+                    endTime = timeSec;
                     if (curConfig == 0) {
                         if (choice == 0) {
                             _open.play("pb");

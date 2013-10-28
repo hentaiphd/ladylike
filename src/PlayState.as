@@ -106,7 +106,7 @@ package
                 FlxG.music.stop();
                 var pick:Number = FlxG.random()*5;
                 if (pick > 3) {
-                    FlxG.switchState(new TextState("Wait for me at\nthe food court", new MallState()));
+                    FlxG.switchState(new TextState("Wait for me at\nthe food court", new MallState("Hey, wanna play cootie catcher?", new CootieState())));
                 } else if (pick > 2){
                     FlxG.switchState(new TextState("Going shopping", new DressingState()))
                 } else if (pick > 1) {
