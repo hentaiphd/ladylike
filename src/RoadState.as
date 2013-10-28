@@ -2,7 +2,7 @@ package
 {
     import org.flixel.*;
 
-    public class RoadState extends TimedState{
+    public class RoadState extends PlayerState{
         [Embed(source = '../assets/OutsideLayer0.png')] public static var spriteBG0:Class;
         [Embed(source = '../assets/OutsideLayer1.png')] public static var spriteBG1:Class;
         [Embed(source = '../assets/OutsideLayer2.png')] public static var spriteBG2:Class;
@@ -27,16 +27,13 @@ package
         [Embed(source = '../assets/drivingaway.mp3')] public static var sndDriveAway:Class;
         [Embed(source = '../assets/pullingup.mp3')] public static var sndPullUp:Class;
 
-        public var player:Player;
-        public var ground:Floor;
         public var flowers:Array;
         public var clouds:FlxSprite;
         public var awayText:FlxText;
 
         override public function create():void{
-            ground = new Floor();
-            add(ground);
-
+            super.create();
+            makeGround();
             var bg0:FlxSprite = new FlxSprite(0, 0, spriteBG0);
             add(bg0);
             clouds = new FlxSprite(-100, 0, spriteClouds);
@@ -54,9 +51,6 @@ package
             awayText = new FlxText(135,10,200,"She's really gone...");
             add(awayText);
 
-            player = new Player(150,180,false);
-            add(player);
-
             flowers = new Array(10);
             for(var i:int = 0; i < flowers.length; i++){
                 var flower:Flower = new Flower((30*i+Math.random()*40), 210+((Math.random()*8)-4));
@@ -66,9 +60,9 @@ package
 
             FlxG.playMusic(sndBG);
             FlxG.play(sndDriveAway);
+            makePlayer();
         }
 
-        public function handleGround(player:Player, ground:FlxSprite):void{}
 
         public function playCarAmbience():void{
             var pick:Number = FlxG.random() * 1000;
@@ -102,7 +96,6 @@ package
 
         override public function update():void{
             super.update();
-            FlxG.collide(player, ground, handleGround);
 
             if(timeFrame%100 == 0){
                 clouds.x += 1;
