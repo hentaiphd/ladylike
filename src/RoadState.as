@@ -2,7 +2,7 @@ package
 {
     import org.flixel.*;
 
-    public class RoadState extends FlxState{
+    public class RoadState extends TimedState{
         [Embed(source = '../assets/OutsideLayer0.png')] public static var spriteBG0:Class;
         [Embed(source = '../assets/OutsideLayer1.png')] public static var spriteBG1:Class;
         [Embed(source = '../assets/OutsideLayer2.png')] public static var spriteBG2:Class;
@@ -29,8 +29,6 @@ package
 
         public var player:Player;
         public var ground:Floor;
-        public var timeFrame:Number = 0;
-        public var timeSec:Number = 0;
         public var flowers:Array;
         public var clouds:FlxSprite;
         public var awayText:FlxText;
@@ -105,22 +103,14 @@ package
         override public function update():void{
             super.update();
             FlxG.collide(player, ground, handleGround);
-            timeFrame++;
 
             if(timeFrame%100 == 0){
-                timeSec++;
                 clouds.x += 1;
                 clouds.y -= 1;
             }
 
             if(timeSec == 5){
                 awayText.kill();
-            }
-
-            var sadTime:Number = 30;
-            if(timeSec == sadTime){
-                FlxG.music.stop();
-                FlxG.switchState(new DoorInState());
             }
 
             if (player.grabbing) {
@@ -133,6 +123,11 @@ package
 
             playBirdAmbience();
             playCarAmbience();
+        }
+
+        override public function endCallback():void{
+            FlxG.music.stop();
+            FlxG.switchState(new DoorInState());
         }
     }
 }
