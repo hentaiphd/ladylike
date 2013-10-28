@@ -70,11 +70,11 @@ package
             } else {
                 var pick:Number = FlxG.random() * 3;
                 if (pick > 2) {
-                    FlxG.play(sndPaper1, .5);
+                    FlxG.play(sndPaper1, .7);
                 } else if (pick > 1) {
-                    FlxG.play(sndPaper2, .5);
+                    FlxG.play(sndPaper2, .7);
                 } else {
-                    FlxG.play(sndPaper3, .5);
+                    FlxG.play(sndPaper3, .7);
                 }
                 if (curState == 0) {
                     if (choice == 0) {
