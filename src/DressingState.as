@@ -2,27 +2,25 @@ package
 {
     import org.flixel.*;
 
-    public class DressingState extends FlxState{
+    public class DressingState extends TimedState{
         [Embed(source = '../assets/field.png')] public static var spriteBG:Class;
 
         public var clothes:Clothes;
-        public var ground:Floor;
-        public var timeFrame:Number = 0;
-        public var timeSec:Number = 0;
+        public var stopTime:int = 0;
         public var numleft:int;
         public var momsays:FlxText;
+        public var selectTime:int = 0;
         public var instruction:FlxText;
 
         override public function create():void{
+            super.create();
             numleft = 5;
-
-            ground = new Floor();
-            add(ground);
 
             var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
             add(bg);
 
             clothes = new Clothes(150,180);
+            clothes.immovable = true;
             add(clothes);
 
             momsays = new FlxText(5,5,100,"You picked out some clothes? Let me see.");
@@ -37,18 +35,14 @@ package
 
         override public function update():void{
             super.update();
-            FlxG.collide(clothes, ground, handleGround);
-            timeFrame++;
-
-            if(timeFrame%100 == 0){
-                timeSec++;
-            }
 
             if(FlxG.keys.justReleased("LEFT")) {
                 clothes.changeOutfit(1);
-            }else if(FlxG.keys.justReleased("RIGHT")){
+            } else if(FlxG.keys.justReleased("RIGHT")){
                 clothes.changeOutfit(2);
-            }else if(FlxG.keys.justReleased("ENTER")){
+            } else if(FlxG.keys.justReleased("ENTER")){
+                selectTime = timeSec;
+                momsays.color = 0xFFFF0000;
                 if(clothes.outfits[clothes.counter].wasworn == true){
                     momsays.text = "You already showed me that. I said I didn't like it. What else?";
                 } else {
@@ -58,11 +52,15 @@ package
                 }
             }
 
-            if(numleft == 0){
+            if (timeSec - selectTime > 0) {
+                momsays.color = 0xFFFFFFFF;
+            }
+            if(numleft == 0 && stopTime == 0){
                 momsays.text = "It's getting late--we have to go. Try this last one on that I picked out for you.";
-                if(timeSec%5 == 0){
-                    FlxG.switchState(new TextState("You're welcome for the nice clothes. Let's go.", new EndState("")));
-                }
+                stopTime = timeSec;
+            }
+            if(stopTime != 0 && timeSec - stopTime >= 5){
+                FlxG.switchState(new TextState("You're welcome for the nice clothes. Let's go.", new EndState("")));
             }
         }
     }
