@@ -2,13 +2,9 @@ package
 {
     import org.flixel.*;
 
-    public class GroceryState extends FlxState{
+    public class GroceryState extends PlayerState{
         [Embed(source = '../assets/field.png')] public static var spriteBG:Class;
 
-        public var player:Player;
-        public var ground:Floor;
-        public var timeFrame:Number = 0;
-        public var timeSec:Number = 12;
         public var eggs:Array;
         public var timerText:FlxText;
         public var timeLeft:int = 0;
@@ -16,8 +12,7 @@ package
 
         override public function create():void{
             super._create(true, true);
-            ground = new Floor();
-            add(ground);
+            makeGround();
 
             var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
             add(bg);
@@ -25,8 +20,7 @@ package
             timerText = new FlxText(135,10,200,timeSec.toString());
             add(timerText);
 
-            player = new Player(150,180, true);
-            add(player);
+            makePlayer();
 
             eggs = new Array(10);
             for(var i:int = 0; i < eggs.length; i++){
@@ -34,9 +28,6 @@ package
                 add(egg);
                 eggs[i] = egg;
             }
-        }
-
-        public function handleGround(player:Player, ground:FlxSprite):void{
         }
 
         public function loseTimer():void{
@@ -48,13 +39,7 @@ package
         }
 
         public function endState(player:Player):void{
-            timeFrame++;
-
-            if(timeFrame%100 == 0){
-                timeSec--;
-            }
-
-            if(timeSec == 4){
+            if(timeSec == 12-4){
                 if(player.holding == true) {
                     if(player.x > FlxG.width - 50){
                         timerText.text = "YOU WIN";
@@ -69,7 +54,7 @@ package
                 }
             }
 
-            if(timeSec == 0){
+            if(timeSec == 12){
                 timerText.text = "LOSE";
                 lose = true;
             }

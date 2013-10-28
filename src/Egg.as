@@ -3,7 +3,7 @@ package
     import org.flixel.*;
 
     public class Egg extends FlxSprite{
-        [Embed(source="../assets/flower.png")] private var img:Class;
+        [Embed(source="../assets/Flower1.png")] private var img:Class;
 
         public var held:Boolean = false;
 

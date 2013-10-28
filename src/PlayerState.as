@@ -9,7 +9,7 @@ package {
             super.create();
             ground = new Floor();
 
-            player = new Player(150,180,false,grabDown);
+            player = new Player(150,180,slippery,grabDown);
         }
 
         public function makeGround():void {

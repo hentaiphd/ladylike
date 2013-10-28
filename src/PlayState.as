@@ -104,7 +104,16 @@ package
                 FlxG.switchState(new DoorState());
             } else if(nextSentence == "RAND_END") {
                 FlxG.music.stop();
-                FlxG.switchState(new ToyStoreState());
+                var pick:Number = FlxG.random()*4;
+                if (false && pick > 3) {
+                    FlxG.switchState(new CootieState());
+                } else if (false && pick > 2){
+                    FlxG.switchState(new DressingState());
+                } else if (true || pick > 1) {
+                    FlxG.switchState(new GroceryState());
+                } else {
+                    FlxG.switchState(new ToyStoreState());
+                }
             } else if (nextSentence == "RESTART") {
                 FlxG.switchState(new PlayState());
             }
