@@ -6,11 +6,13 @@ package
         [Embed(source = '../assets/CootieLayer0.png')] public static var spriteBG:Class;
         [Embed(source = '../assets/CootieHand.png')] public static var spriteHand:Class;
         [Embed(source = '../assets/CootieMove.png')] public static var spriteMove:Class;
+        [Embed(source = '../assets/CootieCatcher.png')] public static var spriteOpen:Class;
 
         public var promptText:FlxText;
         private var selector:Selector;
         private var choicePositions:Array;
         private var hand:FlxSprite;
+        private var _open:FlxSprite;
         private var curState:int = 0;
         private var curConfig:int = 0;
 
@@ -19,6 +21,13 @@ package
         override public function create():void{
             var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
             add(bg);
+            _open = new FlxSprite(0, 0);
+            _open.loadGraphic(spriteOpen, true, true, 616, 600);
+            _open.addAnimation("rg", [1]);
+            _open.addAnimation("ob", [2]);
+            _open.addAnimation("py", [3]);
+            _open.addAnimation("pb", [4]);
+            _open.addAnimation("wait", [0]);
             hand = new FlxSprite(0, 0);
             hand.loadGraphic(spriteMove, true, true, 320, 240, true);
             hand.addAnimation("move1", [0], 3, false);
@@ -99,14 +108,41 @@ package
                     }
                     curState = 2;
                 } else if (curState == 2) {
-                    if (choice == 0) {
-
-                    } else if (choice == 1){
-
-                    } else if (choice == 2) {
-
-                    } else if (choice == 3) {
-
+                    remove(hand);
+                    var bgHand:FlxSprite = new FlxSprite(0, 0, spriteHand);
+                    add(bgHand);
+                    _open.y = -190;
+                    add(_open);
+                    if (curConfig == 0) {
+                        if (choice == 0) {
+                            _open.play("pb");
+                        } else if (choice == 1){
+                            _open.angle  = 180;
+                            _open.x = -300;
+                            _open.play("pb");
+                        } else if (choice == 2) {
+                            _open.play("rg");
+                            _open.x = -300;
+                        } else if (choice == 3) {
+                            _open.angle  = 180;
+                            _open.play("rg");
+                        }
+                    } else if (curConfig == 1) {
+                        if (choice == 0) {
+                            _open.play("ob");
+                            _open.angle = 90;
+                            _open.x = -300;
+                        } else if (choice == 1){
+                            _open.play("py");
+                            _open.angle = 90;
+                        } else if (choice == 2) {
+                            _open.play("ob");
+                            _open.angle = -90;
+                        } else if (choice == 3) {
+                            _open.play("py");
+                            _open.angle = -90;
+                            _open.x = -300;
+                        }
                     }
                 }
             }
