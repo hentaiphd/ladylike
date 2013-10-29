@@ -64,17 +64,6 @@ package
             FlxG.play(sndDriveAway);
         }
 
-
-        public function playCarAmbience():void{
-            var pick:Number = FlxG.random() * 1000;
-            if(pick > 3) { return; }
-            if (pick > 2) {
-                FlxG.play(sndCar);
-            } else if (pick > 1) {
-                FlxG.play(sndTruck);
-            }
-        }
-
         public function playCarAmbience():void{
             var pick:Number = FlxG.random() * 1000;
             if(pick > 3) { return; }
