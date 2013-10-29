@@ -2,8 +2,12 @@ package
 {
     import org.flixel.*;
 
-    public class RoadState extends FlxState{
-        [Embed(source = '../assets/field.png')] public static var spriteBG:Class;
+    public class RoadState extends PlayerState{
+        [Embed(source = '../assets/OutsideLayer0.png')] public static var spriteBG0:Class;
+        [Embed(source = '../assets/OutsideLayer1.png')] public static var spriteBG1:Class;
+        [Embed(source = '../assets/OutsideLayer2.png')] public static var spriteBG2:Class;
+        [Embed(source = '../assets/Clouds.png')] public static var spriteClouds:Class;
+        [Embed(source = '../assets/Brush.png')] public static var spriteBrush:Class;
         [Embed(source = '../assets/outdoorloop_lofi.mp3')] public static var sndBG:Class;
         [Embed(source = '../assets/bird1.mp3')] public static var sndBird1:Class;
         [Embed(source = '../assets/bird2_l.mp3')] public static var sndBird2L:Class;
@@ -23,29 +27,35 @@ package
         [Embed(source = '../assets/drivingaway.mp3')] public static var sndDriveAway:Class;
         [Embed(source = '../assets/pullingup.mp3')] public static var sndPullUp:Class;
 
-        public var player:Player;
-        public var ground:Floor;
-        public var timeFrame:Number = 0;
-        public var timeSec:Number = 0;
         public var flowers:Array;
+        public var clouds:FlxSprite;
         public var awayText:FlxText;
 
         override public function create():void{
-            ground = new Floor();
-            add(ground);
-
-            var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
-            add(bg);
+            super._create(false, true);
+            makeGround();
+            var bg0:FlxSprite = new FlxSprite(0, 0, spriteBG0);
+            add(bg0);
+            clouds = new FlxSprite(-100, 0, spriteClouds);
+            add(clouds);
+            var bg1:FlxSprite = new FlxSprite(0, 0, spriteBG1);
+            add(bg1);
+            var bg2:FlxSprite = new FlxSprite(0, 0, spriteBG2);
+            add(bg2);
+            var brush:FlxSprite = new FlxSprite(0, 0);
+            brush.loadGraphic(spriteBrush, true, true, 320, 240, true);
+            brush.addAnimation("run", [0, 1], 1);
+            add(brush);
+            brush.play("run");
 
             awayText = new FlxText(135,10,200,"She's really gone...");
             add(awayText);
 
-            player = new Player(150,180);
-            add(player);
+            makePlayer();
 
             flowers = new Array(10);
             for(var i:int = 0; i < flowers.length; i++){
-                var flower:Flower = new Flower((30*i+Math.random()*40), 210);
+                var flower:Flower = new Flower((30*i+Math.random()*40), 210+((Math.random()*8)-4));
                 add(flower);
                 flowers[i] = flower;
             }
@@ -54,7 +64,16 @@ package
             FlxG.play(sndDriveAway);
         }
 
-        public function handleGround(player:Player, ground:FlxSprite):void{}
+
+        public function playCarAmbience():void{
+            var pick:Number = FlxG.random() * 1000;
+            if(pick > 3) { return; }
+            if (pick > 2) {
+                FlxG.play(sndCar);
+            } else if (pick > 1) {
+                FlxG.play(sndTruck);
+            }
+        }
 
         public function playCarAmbience():void{
             var pick:Number = FlxG.random() * 1000;
@@ -88,21 +107,14 @@ package
 
         override public function update():void{
             super.update();
-            FlxG.collide(player, ground, handleGround);
-            timeFrame++;
 
             if(timeFrame%100 == 0){
-                timeSec++;
+                clouds.x += 1;
+                clouds.y -= 1;
             }
 
             if(timeSec == 5){
                 awayText.kill();
-            }
-
-            var sadTime:Number = 30;
-            if(timeSec == sadTime){
-                FlxG.music.stop();
-                FlxG.switchState(new DoorInState());
             }
 
             if (player.grabbing) {
@@ -115,6 +127,11 @@ package
 
             playBirdAmbience();
             playCarAmbience();
+        }
+
+        override public function endCallback():void{
+            FlxG.music.stop();
+            FlxG.switchState(new TextState("I came back to see if you're ready to behave.", new EndState("That kind of behavior is unacceptable, Nina... stop crying--I only left you there for like ten seconds.")));
         }
     }
 }

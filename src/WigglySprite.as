@@ -6,7 +6,7 @@ package
 
         public var anchor:FlxPoint;
 
-        public function WigglySprite(x:Number, y:Number, sprite:Class){
+        public function WigglySprite(x:Number, y:Number, sprite:Class=null){
             super(x, y, sprite);
             anchor = new FlxPoint(x, y);
         }

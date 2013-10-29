@@ -21,7 +21,7 @@ package{
 
         public function momSays():void{
             var words:String = this.curBranch.momSentence;
-            momWords = new FlxText(13,75,130,words);
+            momWords = new FlxText(PlayState.momTextX,PlayState.momTextY,220,words);
             FlxG.state.add(momWords);
         }
 
@@ -30,21 +30,25 @@ package{
             this.selectY = y;
             var yCalc:int = y;
             for(var i:int = 0; i < choicesRef.length; i++){
-                yCalc += 30;
+                yCalc += 20;
                 choices[i] = oneReply(choicesRef[i],x,yCalc);
-                choicePos[i] = yCalc;
+                choicePos[i] = yCalc + 5;
             }
         }
 
         public function oneReply(i:String,x:int,y:int):FlxText{
-            var newReply:FlxText = new FlxText(x,y,150,i);
+            var newReply:FlxText = new FlxText(x,y,235,i);
             FlxG.state.add(newReply);
             return newReply;
         }
 
         public function start():void{
             this.momSays();
-            selector = new Selector(this.selectX-5,this.choicePos);
+            var xArr:Array = new Array();
+            for (var i:int = 0; i < this.choicePos.length; i++) {
+                xArr.push(this.selectX-5);
+            }
+            selector = new Selector(xArr,this.choicePos);
             FlxG.state.add(selector);
         }
 
@@ -58,9 +62,9 @@ package{
             momWords.kill();
         }
 
-        public function getInput():Number{
+        public function getInput():String{
             if (FlxG.keys.justPressed("ENTER")){
-                return curBranch.responsePointers[this.selector.posY];
+                return curBranch.responsePointers[this.selector.getIndex()];
             }
             return PlayState.NO_RESULT;
         }

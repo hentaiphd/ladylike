@@ -1,3 +1,4 @@
 *.swf
 .*.un~
 .*.swp
+.DS_Store
