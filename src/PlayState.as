@@ -57,14 +57,7 @@ package
             var momSpeech:FlxSprite = new FlxSprite(30, 80, spriteMomSpeech);
             add(momSpeech);
 
-           if(FlxG.music == null){
-                FlxG.playMusic(sndBG);
-            } else {
-                FlxG.music.resume();
-                if(!FlxG.music.active){
-                    FlxG.playMusic(sndBG);
-                }
-            }
+            FlxG.playMusic(sndBG);
 
             textBoxReply = new FlxSprite(girlTextX-8,girlTextY);
             textBoxReply.makeGraphic(240,90,0x99FFFFFF);
