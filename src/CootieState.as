@@ -20,6 +20,10 @@ package
         private var curState:int = 0;
         private var curConfig:int = 0;
         private var _endTime:int = -1;
+        private var moveStartTime:int = 0;
+        private var lastMoveTime:int = 0;
+        private var curChoice:int = -1;
+        private var gameDone:Boolean = false;
 
         private static var NO_RESULT:int = -1;
 
@@ -79,22 +83,39 @@ package
             if (timeSec - endTime >= 5){
                 FlxG.switchState(new MallState("Bye.", new EndState("")));
             }
+            if (moveStartTime != 0) {
+                if(lastMoveTime == 0){
+                    playPaperSound();
+                    lastMoveTime = timeFrame;
+                } else if (timeFrame - lastMoveTime == 30 && !gameDone) {
+                    playPaperSound();
+                    lastMoveTime = timeFrame;
+                }
+                if(timeFrame - moveStartTime >= curChoice*13){
+                    moveStartTime = 0;
+                    lastMoveTime = 0;
+                }
+            }
             var choice:int = getChoice();
             if(choice == NO_RESULT){
             } else {
-                playPaperSound();
+                moveStartTime = timeFrame;
                 if (curState == 0) {
                     if (choice == 0) {
                         hand.play("move1");
+                        curChoice = 1;
                         curConfig = 0;
                     } else if (choice == 1){
                         hand.play("move3");
+                        curChoice = 3;
                         curConfig = 0;
                     } else if (choice == 2) {
                         hand.play("move2");
+                        curChoice = 2;
                         curConfig = 1;
                     } else if (choice == 3) {
                         hand.play("move4");
+                        curChoice = 4;
                         curConfig = 1;
                     }
                     curState = 1;
@@ -102,27 +123,35 @@ package
                     if (curConfig == 0){
                         if (choice == 0) {
                             hand.play("amove6");
+                            curChoice = 6;
                             curConfig = 1;
                         } else if (choice == 1){
                             hand.play("amove6");
+                            curChoice = 6;
                             curConfig = 1;
                         } else if (choice == 2) {
                             hand.play("amove5");
+                            curChoice = 5;
                         } else if (choice == 3) {
                             hand.play("amove4");
                             curConfig = 1;
+                            curChoice = 4;
                         }
                     } else if (curConfig == 1){
                         if (choice == 0) {
                             hand.play("move4");
+                            curChoice = 4;
                             curConfig = 0;
                         } else if (choice == 1){
                             hand.play("move6");
                             curConfig = 0;
+                            curChoice = 6;
                         } else if (choice == 2) {
                             hand.play("move3");
+                            curChoice = 3;
                         } else if (choice == 3) {
                             hand.play("move5");
+                            curChoice = 5;
                         }
                     }
                     curState = 2;
@@ -133,6 +162,7 @@ package
                     _open.y = -190;
                     add(_open);
                     endTime = timeSec;
+                    gameDone = true;
                     if (curConfig == 0) {
                         if (choice == 0) {
                             _open.play("pb");
