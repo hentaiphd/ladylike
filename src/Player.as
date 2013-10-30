@@ -14,6 +14,7 @@ package
         public var counter:int = 0;
         private var slippery:Boolean = false;
         private var grabDown:Boolean = false;
+        public var no_control:Boolean = false;
 
         public function Player(x:int,y:int,slippery:Boolean,grabDown:Boolean):void{
             super(x,y);
@@ -27,6 +28,7 @@ package
             addAnimation("run", [7,8,9,10], 8, true);
             addAnimation("standing", [0]);
             addAnimation("crouching", [1, 2], 7, false);
+            addAnimation("falling", [14, 15, 16], 7, false);
 
             if (!this.slippery) {
                 drag.x = runSpeed*8;
@@ -46,6 +48,16 @@ package
             }
 
             grabbing = false;
+            if (this.slippery) {
+                if (FlxG.keys.justReleased("RIGHT")) {
+                    decelerate();
+                }
+                if (FlxG.keys.justReleased("LEFT")) {
+                    decelerate();
+                }
+            }
+
+            if (this.no_control) return;
             if(FlxG.keys.DOWN && this.grabDown){
                 grabbing = true;
                 play("crouching");
@@ -63,14 +75,6 @@ package
                 }
             }
 
-            if (this.slippery) {
-                if (FlxG.keys.justReleased("RIGHT")) {
-                    decelerate();
-                }
-                if (FlxG.keys.justReleased("LEFT")) {
-                    decelerate();
-                }
-            }
         }
 
         public function runLeft():void{

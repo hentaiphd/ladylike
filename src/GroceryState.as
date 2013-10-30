@@ -3,12 +3,13 @@ package
     import org.flixel.*;
 
     public class GroceryState extends PlayerState{
-        [Embed(source = '../assets/field.png')] public static var spriteBG:Class;
+        [Embed(source = '../assets/Market.png')] public static var spriteBG:Class;
 
         public var eggs:Array;
         public var timerText:FlxText;
         public var timeLeft:int = 0;
-        public var lose:Boolean = false;
+        public var lost:Boolean = false;
+        public var timeLimit:int = 3;
 
         override public function create():void{
             super._create(true, true);
@@ -17,14 +18,16 @@ package
             var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
             add(bg);
 
-            timerText = new FlxText(135,10,200,timeSec.toString());
+            timerText = new FlxText(50,10,200,"");
+            timerText.color = 0xFF666699;
             add(timerText);
 
             makePlayer();
+            player.x = 20;
 
-            eggs = new Array(10);
+            eggs = new Array(1);
             for(var i:int = 0; i < eggs.length; i++){
-                var egg:Egg = new Egg((30*i+Math.random()*40), 210);
+                var egg:Egg = new Egg(70, 210);
                 add(egg);
                 eggs[i] = egg;
             }
@@ -32,31 +35,34 @@ package
 
         public function loseTimer():void{
             timeLeft++;
-            if(timeLeft%125 == 0) {
-                timerText.text = "YOU LOSE";
-                FlxG.switchState(new TextState("U broke a egge", new EndState("")));
+            if(timeSec - timeLimit >= 1) {
+                FlxG.switchState(new TextState("That was embarassing...", new EndState("")));
             }
         }
 
         public function endState(player:Player):void{
-            if(timeSec == 12-4){
+            if(timeSec == timeLimit-4){
                 if(player.holding == true) {
                     if(player.x > FlxG.width - 50){
                         timerText.text = "YOU WIN";
-                        lose = true;
                     } else {
                         timerText.text = "I have to hurry or mom will be so mad!";
-                        lose = true;
                     }
                 } else {
                     timerText.text = "Mom wants eggs...";
-                    lose = true;
                 }
             }
 
-            if(timeSec == 12){
-                timerText.text = "LOSE";
-                lose = true;
+            if(timeSec == timeLimit){
+                timerText.text = "Ow~!";
+                lost = true;
+                player.no_control = true;
+                player.play("falling");
+                for(var i:int = 0; i < eggs.length; i++){
+                    if (eggs[i].held) {
+                        eggs[i].play("break");
+                    }
+                }
             }
         }
 
@@ -65,10 +71,6 @@ package
             super.update();
             FlxG.collide(player, ground, handleGround);
             endState(player);
-
-            if(lose == false){
-                timerText.text = timeSec.toString();
-            }
 
             var i:int;
 
@@ -84,14 +86,17 @@ package
             for(i = 0; i < eggs.length; i++){
                 if (eggs[i].held == true){
                     eggs[i].x = player.x+5;
-                    eggs[i].y = player.y-10;
+                    eggs[i].y = player.y+10;
                 }
             }
 
             if(player.holding == true) {
-                if (FlxG.keys.LEFT) {
+                if (lost) {
                     loseTimer();
-                } else if (FlxG.keys.RIGHT) {
+                }
+                if (FlxG.keys.LEFT){
+                    loseTimer();
+                } else if(FlxG.keys.RIGHT) {
                     loseTimer();
                 }
 
