@@ -15,6 +15,7 @@ package
         private var slippery:Boolean = false;
         private var grabDown:Boolean = false;
         public var no_control:Boolean = false;
+        public var fallen:Boolean = false;
 
         public function Player(x:int,y:int,slippery:Boolean,grabDown:Boolean):void{
             super(x,y);
@@ -102,10 +103,14 @@ package
         public function decelerate():void{
             if (counter < 5) {;
                 drag.x += 200;
-                play("run");
+                if (!this.fallen){
+                    play("run");
+                }
                 counter++;
             } else if (counter == 5) {
-                play("standing");
+                if (!this.fallen){
+                    play("standing");
+                }
                 counter = 0;
             }
         }

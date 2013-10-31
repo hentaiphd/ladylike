@@ -4,12 +4,15 @@ package
 
     public class GroceryState extends PlayerState{
         [Embed(source = '../assets/Market.png')] public static var spriteBG:Class;
+        [Embed(source = '../assets/eggshatter.mp3')] public static var soundEgg:Class;
+        [Embed(source = '../assets/freezerloop.mp3')] public static var soundBG:Class;
 
         public var eggs:Array;
         public var timerText:FlxText;
         public var timeLeft:int = 0;
         public var lost:Boolean = false;
         public var timeLimit:int = 3;
+        public var soundLock:Boolean = false;
 
         override public function create():void{
             super._create(true, true);
@@ -31,6 +34,8 @@ package
                 add(egg);
                 eggs[i] = egg;
             }
+
+            FlxG.playMusic(soundBG);
         }
 
         public function loseTimer():void{
@@ -57,10 +62,15 @@ package
                 timerText.text = "Ow~!";
                 lost = true;
                 player.no_control = true;
-                player.play("falling");
-                for(var i:int = 0; i < eggs.length; i++){
-                    if (eggs[i].held) {
-                        eggs[i].play("break");
+                player.fallen = true;
+                if (!soundLock) {
+                    soundLock = true;
+                    FlxG.play(soundEgg);
+                    player.play("falling");
+                    for(var i:int = 0; i < eggs.length; i++){
+                        if (eggs[i].held) {
+                            eggs[i].play("break");
+                        }
                     }
                 }
             }
