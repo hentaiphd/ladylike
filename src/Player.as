@@ -16,6 +16,7 @@ package
         private var grabDown:Boolean = false;
         public var no_control:Boolean = false;
         public var fallen:Boolean = false;
+        public var isMoving:Boolean = false;
 
         public function Player(x:int,y:int,slippery:Boolean,grabDown:Boolean):void{
             super(x,y);
@@ -67,10 +68,13 @@ package
                 play("crouching");
             } else {
                 if(FlxG.keys.LEFT) {
+                    isMoving = true;
                     this.runLeft();
                 } else if(FlxG.keys.RIGHT){
+                    isMoving = true;
                     this.runRight();
                 } else {
+                    isMoving = false;
                     play("standing");
                     running = false;
                 }
@@ -104,11 +108,13 @@ package
             if (counter < 5) {;
                 drag.x += 200;
                 if (!this.fallen){
+                    isMoving = true;
                     play("run");
                 }
                 counter++;
             } else if (counter == 5) {
                 if (!this.fallen){
+                    isMoving = false;
                     play("standing");
                 }
                 counter = 0;

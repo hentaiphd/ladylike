@@ -9,9 +9,10 @@ package
 
         public var eggs:Array;
         public var timerText:FlxText;
-        public var timeLeft:int = 0;
         public var lost:Boolean = false;
-        public var timeLimit:int = 3;
+        public var timeLimit:int = 2;
+        public var timeLose:int = -1;
+        public var timeGrab:int = -1;
         public var soundLock:Boolean = false;
 
         override public function create():void{
@@ -38,28 +39,27 @@ package
             FlxG.playMusic(soundBG);
         }
 
-        public function loseTimer():void{
-            timeLeft++;
-            if(timeSec - timeLimit >= 1) {
-                FlxG.switchState(new TextState("That was embarassing...", new EndState("")));
-            }
-        }
+        override public function update():void{
+            super.update();
+            FlxG.collide(player, ground, handleGround);
 
-        public function endState(player:Player):void{
-            if(timeSec == timeLimit-4){
+            var i:int;
+
+            if(timeLose != -1 && timeSec - timeLose >= 2) {
+                FlxG.switchState(new TextState("Sorry mom...", new EndState("")));
+            }
+
+            if(timeSec == 5){
                 if(player.holding == true) {
-                    if(player.x > FlxG.width - 50){
-                        timerText.text = "YOU WIN";
-                    } else {
-                        timerText.text = "I have to hurry or mom will be so mad!";
-                    }
+                    timerText.text = "I have to hurry or mom will be so mad!";
                 } else {
                     timerText.text = "Mom wants eggs...";
                 }
             }
 
-            if(timeSec == timeLimit){
-                timerText.text = "Ow~!";
+            if(!lost && player.holding && player.isMoving && timeGrab != -1 && timeSec - timeGrab > 1){
+                timeLose = timeSec;
+                timerText.text = "";
                 lost = true;
                 player.no_control = true;
                 player.fallen = true;
@@ -67,24 +67,16 @@ package
                     soundLock = true;
                     FlxG.play(soundEgg);
                     player.play("falling");
-                    for(var i:int = 0; i < eggs.length; i++){
+                    for(i = 0; i < eggs.length; i++){
                         if (eggs[i].held) {
                             eggs[i].play("break");
                         }
                     }
                 }
             }
-        }
-
-
-        override public function update():void{
-            super.update();
-            FlxG.collide(player, ground, handleGround);
-            endState(player);
-
-            var i:int;
 
             if (player.grabbing) {
+                timeGrab = timeSec;
                 for(i = 0; i < eggs.length; i++){
                     if (player.overlaps(eggs[i])) {
                         player.holding = true;
@@ -97,25 +89,6 @@ package
                 if (eggs[i].held == true){
                     eggs[i].x = player.x+5;
                     eggs[i].y = player.y+10;
-                }
-            }
-
-            if(player.holding == true) {
-                if (lost) {
-                    loseTimer();
-                }
-                if (FlxG.keys.LEFT){
-                    loseTimer();
-                } else if(FlxG.keys.RIGHT) {
-                    loseTimer();
-                }
-
-                if (FlxG.keys.justReleased("RIGHT")) {
-                    timeLeft = 0;
-                }
-
-                if (FlxG.keys.justReleased("LEFT")) {
-                    timeLeft = 0;
                 }
             }
         }
