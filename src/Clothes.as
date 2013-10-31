@@ -53,9 +53,8 @@ package
                 }
             }else if(direction == 2){
                 counter++;
-                if(counter == outfits.length-1){
+                if(counter > outfits.length-1){
                     counter = 0;
-
                 }
             }
             FlxG.state.add(outfits[counter]);
