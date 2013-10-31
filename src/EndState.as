@@ -15,7 +15,7 @@ package
             convoTree = new Array();
 
             var zero:ConvoBranch = new ConvoBranch("Start", prompt);
-            zero.addResponse("END // Enter to restart.", "RESTART");
+            zero.addResponse("END // Enter to restart\nxoxo Nina, Emmett, David, Winnie", "RESTART");
             convoTree[0] = zero;
 
             return convoTree;
