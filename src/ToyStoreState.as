@@ -25,8 +25,8 @@ package {
 
             doll = new FlxSprite(100, 20);
             doll.loadGraphic(spriteDoll, true, true, 845/8, 200);
-            doll.addAnimation("fwd", [0, 1, 3, 2, 4, 5, 6, 7, 0], 4, false);
-            doll.addAnimation("rev", [7, 6, 5, 4, 2, 3, 1, 0], 4, false);
+            doll.addAnimation("fwd", [0, 1, 2, 3, 4, 5, 6, 7, 0], 4, false);
+            doll.addAnimation("rev", [7, 6, 5, 4, 3, 2, 1, 0], 4, false);
 
             toys = new Array(1);
             for(var i:int = 0; i < toys.length; i++){
@@ -72,7 +72,7 @@ package {
             }
 
             if (nudeTime != -1){
-                if (timeSec - nudeTime >= 10){
+                if (timeSec - nudeTime >= 4){
                     FlxG.switchState(new TextState("I wish you would stop cutting the hair off your Barbies. They're so expensive.", new EndState("")));
                 }
             }
