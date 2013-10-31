@@ -49,11 +49,11 @@ package
             if(direction == 1){
                 counter--;
                 if(counter < 0){
-                    counter = outfits.length;
+                    counter = outfits.length-1;
                 }
             }else if(direction == 2){
                 counter++;
-                if(counter == outfits.length){
+                if(counter == outfits.length-1){
                     counter = 0;
 
                 }
