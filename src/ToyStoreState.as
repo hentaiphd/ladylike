@@ -47,6 +47,8 @@ package {
                         var smoke:FlxSprite = new FlxSprite(0, 0);
                         smoke.makeGraphic(320, 240, 0x88000000);
                         add(smoke);
+                        var instruction:FlxSprite = new FlxText(5,200,100,"Arrows to turn, ENTER to examine further.");
+                        FlxG.state.add(instruction);
                         add(doll);
                     }
                 }
