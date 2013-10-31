@@ -32,7 +32,7 @@ package
 
             bg = new FlxSprite(0, 0);
             bg.loadGraphic(spriteBG, true, true, 320, 240, true);
-            bg.addAnimation("curtain", [1, 0], 2, false);
+            bg.addAnimation("curtain", [1, 0], 1, false);
             add(bg);
 
             var speechBubble:FlxSprite = new FlxSprite(60, 20, spriteBubble);

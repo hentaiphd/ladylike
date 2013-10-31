@@ -16,11 +16,11 @@ package{
             shadows = new Array();
             for(var i:int = 0; i < refYArray.length; i++) {
                 var spr:FlxSprite = new FlxSprite(refXArray[i], refYArray[i]);
-                spr.makeGraphic(5, 5, 0xFF111111);
+                spr.makeGraphic(5, 5, 0xFF888888);
                 FlxG.state.add(spr);
                 shadows.push(spr);
             }
-            this.makeGraphic(5,5,0xFFFFFFFF);
+            this.makeGraphic(5,5,0xFF000000);
             this.width = 5;
             this.height = 5;
         }

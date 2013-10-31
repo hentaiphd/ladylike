@@ -57,7 +57,7 @@ package
                 }
             }
 
-            if(!lost && player.holding && player.isMoving && timeGrab != -1 && timeSec - timeGrab > 1){
+            if(!lost && player.holding && player.isMoving && timeGrab != -1 && timeFrame - timeGrab > 70){
                 timeLose = timeSec;
                 timerText.text = "";
                 lost = true;
@@ -76,7 +76,7 @@ package
             }
 
             if (player.grabbing) {
-                timeGrab = timeSec;
+                timeGrab = timeFrame;
                 for(i = 0; i < eggs.length; i++){
                     player.holding = true;
                     eggs[i].held = true;
