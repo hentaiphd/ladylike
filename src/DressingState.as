@@ -93,7 +93,7 @@ package
                 stopTime = timeSec;
             }
             if(stopTime != 0 && timeSec - stopTime >= 5){
-                FlxG.switchState(new TextState("You're welcome for the nice clothes. Let's go.", new EndState("")));
+                FlxG.switchState(new TextState("You're welcome for the nice clothes. Let's go.", new EndState("Those graphic T-shirts are so tacky.")));
             }
         }
     }
