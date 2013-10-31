@@ -65,23 +65,25 @@ package
         override public function update():void{
             super.update();
 
-            if(FlxG.keys.justReleased("LEFT")) {
-                FlxG.play(sndHiBlip);
-                clothes.changeOutfit(1);
-            } else if(FlxG.keys.justReleased("RIGHT")){
-                FlxG.play(sndHiBlip);
-                clothes.changeOutfit(2);
-            } else if(FlxG.keys.justReleased("ENTER")){
-                FlxG.play(sndLoBlip);
-                selectTime = timeSec;
-                momsays.color = 0xFFFF0000;
-                bg.play("curtain");
-                if(clothes.outfits[clothes.counter].wasworn == true){
-                    momsays.text = "You already showed me that. I said I didn't like it. What else?";
-                } else {
-                    clothes.outfits[clothes.counter].wasworn = true;
-                    numleft--;
-                    momsays.text = "I don't like that. What else did you get?";
+            if (stopTime == 0){
+                if(FlxG.keys.justReleased("LEFT")) {
+                    FlxG.play(sndHiBlip);
+                    clothes.changeOutfit(1);
+                } else if(FlxG.keys.justReleased("RIGHT")){
+                    FlxG.play(sndHiBlip);
+                    clothes.changeOutfit(2);
+                } else if(FlxG.keys.justReleased("ENTER")){
+                    FlxG.play(sndLoBlip);
+                    selectTime = timeSec;
+                    momsays.color = 0xFFFF0000;
+                    bg.play("curtain");
+                    if(clothes.outfits[clothes.counter].wasworn == true){
+                        momsays.text = "You already showed me that. I said I didn't like it. What else?";
+                    } else {
+                        clothes.outfits[clothes.counter].wasworn = true;
+                        numleft--;
+                        momsays.text = "I don't like that. What else did you get?";
+                    }
                 }
             }
 

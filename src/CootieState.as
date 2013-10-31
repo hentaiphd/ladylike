@@ -199,7 +199,7 @@ package
         }
 
         private function getChoice():int{
-            if (FlxG.keys.justPressed("ENTER")) {
+            if (FlxG.keys.justPressed("ENTER") && !gameDone) {
                 return selector.getIndex();
             }
             return NO_RESULT;
