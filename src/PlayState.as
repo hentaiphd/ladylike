@@ -102,7 +102,7 @@ package
                 } else if (pick > 2){
                     FlxG.switchState(new TextState("Pick out some clothes.", new DressingState()))
                 } else if (pick > 1) {
-                    FlxG.switchState(new TextState("Run and grab some eggs,\nwould you?", new GroceryState()));
+                    FlxG.switchState(new TextState("Let's check out now.", new CheckoutState("Run and grab some eggs, would you?", new GroceryState())));
                 } else {
                     FlxG.switchState(new TextState("I'm shopping--you can wait\nin the toystore.", new ToyStoreState()));
                 }

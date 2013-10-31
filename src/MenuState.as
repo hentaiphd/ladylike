@@ -3,7 +3,8 @@ package
     import org.flixel.*;
 
     public class MenuState extends FlxState{
-        [Embed(source = '../assets/field.png')] public static var bgSprite:Class;
+        [Embed(source = '../assets/SplashLayer0.png')] public static var bgSprite:Class;
+        [Embed(source = '../assets/SplashLayer1.png')] public static var spriteGirl:Class;
 
         public var t1:FlxText;
         public var t2:FlxText;
@@ -17,11 +18,11 @@ package
             bg = new FlxSprite(0,0,bgSprite);
             add(bg);
 
-            t1:FlxText;
-            t1 = new FlxText(0,10,FlxG.width,"LADYLIKE");
-            t1.size = 16;
-            t1.alignment = "center";
-            add(t1);
+            var girl:FlxSprite = new FlxSprite(135, 85);
+            girl.loadGraphic(spriteGirl, true, true, 594/9, 72, true);
+            girl.addAnimation("run", [0,1,2,3,4,5,6,7,8], 5, true);
+            add(girl);
+            girl.play("run");
 
             t2:FlxText;
             t2 = new FlxText(40,30,250,"A game by Nina Freeman and Emmett Butler");
