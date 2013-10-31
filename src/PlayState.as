@@ -97,11 +97,11 @@ package
             } else if(nextSentence == "RAND_END") {
                 FlxG.music.stop();
                 var pick:Number = FlxG.random()*5;
-                if (pick > 3) {
+                if (false && pick > 3) {
                     FlxG.switchState(new TextState("Wait for me in\nthe food court.", new MallState("Hey, wanna play cootie catcher?", new CootieState())));
-                } else if (pick > 2){
+                } else if (false && pick > 2){
                     FlxG.switchState(new TextState("Pick out some clothes.", new DressingState()))
-                } else if (pick > 1) {
+                } else if (false && pick > 1) {
                     FlxG.switchState(new TextState("Let's check out now.", new CheckoutState("Run and grab some eggs, would you?", new GroceryState())));
                 } else {
                     FlxG.switchState(new TextState("I'm shopping--you can wait\nin the toystore.", new ToyStoreState()));
