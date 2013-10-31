@@ -30,6 +30,7 @@ package
             addAnimation("run", [7,8,9,10], 8, true);
             addAnimation("standing", [0]);
             addAnimation("crouching", [1, 2], 7, false);
+            addAnimation("reaching", [17, 18], 7, false);
             addAnimation("falling", [14, 15, 16], 7, false);
 
             if (!this.slippery) {
@@ -65,7 +66,7 @@ package
                 play("crouching");
             } else if(FlxG.keys.UP && !this.grabDown){
                 grabbing = true;
-                play("crouching");
+                play("reaching");
             } else {
                 if(FlxG.keys.LEFT) {
                     isMoving = true;

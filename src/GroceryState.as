@@ -16,7 +16,7 @@ package
         public var soundLock:Boolean = false;
 
         override public function create():void{
-            super._create(true, true);
+            super._create(true, false);
             makeGround();
 
             var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
@@ -31,7 +31,7 @@ package
 
             eggs = new Array(1);
             for(var i:int = 0; i < eggs.length; i++){
-                var egg:Egg = new Egg(70, 210);
+                var egg:Egg = new Egg(-1870, 170);
                 add(egg);
                 eggs[i] = egg;
             }
@@ -78,10 +78,8 @@ package
             if (player.grabbing) {
                 timeGrab = timeSec;
                 for(i = 0; i < eggs.length; i++){
-                    if (player.overlaps(eggs[i])) {
-                        player.holding = true;
-                        eggs[i].held = true;
-                    }
+                    player.holding = true;
+                    eggs[i].held = true;
                 }
             }
 
