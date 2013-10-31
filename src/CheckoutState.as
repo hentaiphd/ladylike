@@ -4,7 +4,7 @@ package {
     public class CheckoutState extends TimedState {
         [Embed(source = '../assets/CashierGetEggs.png')] public static var spriteBG:Class;
         [Embed(source = '../assets/CashierMom.png')] public static var spriteBubble:Class;
-        [Embed(source = '../assets/freezerloop.mp3')] public static var soundBG:Class;
+        [Embed(source = '../assets/checkoutloop.mp3')] public static var soundBG:Class;
 
         private var prompt:String;
         private var nextState:FlxState;
