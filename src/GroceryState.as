@@ -46,7 +46,7 @@ package
             var i:int;
 
             if(timeLose != -1 && timeSec - timeLose >= 2) {
-                FlxG.switchState(new TextState("Sorry mom...", new EndState("")));
+                FlxG.switchState(new TextState("Sorry mom...", new EndState("You need to be more careful.\nI'm sending you back to gymnastics to practice your balance.")));
             }
 
             if(timeSec == 5){

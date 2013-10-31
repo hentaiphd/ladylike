@@ -55,7 +55,7 @@ package
             add(hand);
             hand.play("still");
 
-            promptText = new FlxText(135,10,200,"Let's play cootie catcher");
+            promptText = new FlxText(135,10,200,"Wanna play cootie catcher?");
             //add(promptText);
 
             choicePositions = new Array(
@@ -81,7 +81,7 @@ package
         override public function update():void{
             super.update();
             if (timeSec - endTime >= 5){
-                FlxG.switchState(new MallState("Bye.", new EndState("")));
+                FlxG.switchState(new MallState("...Bye", new EndState("Who was that? A new friend?")));
             }
             if (moveStartTime != 0) {
                 if(lastMoveTime == 0){

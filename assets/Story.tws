@@ -1,11 +1,11 @@
 (dp0
 S'buildDestination'
 p1
-V/Users/NinaFreeman/Desktop/Story_2
+V/Users/NinaFreeman/Desktop/final
 p2
 sS'saveDestination'
 p3
-S'/Users/NinaFreeman/Desktop/git/ludumdare/assets/Story.tws'
+V/Users/NinaFreeman/Desktop/git/ludumdare/assets/Story.tws
 p4
 sS'target'
 p5
@@ -217,15 +217,15 @@ g12
 I00
 sg13
 (lp76
-F676.25
-aF17.8125
+F689.16137743436059
+aF24.98548746353385
 asg15
 (itiddlywiki
 Tiddler
 p77
 (dp78
 g18
-VLiz is fresh. She's always swearing and talking about boys.\u000a\u000a[[I don't care. I like her.|6]]\u000a[[Ok, so?|13]]\u000a[[But Liz is my friend! She's my best friend!|28]]\u000a
+VLiz is fresh. She's always swearing and talking about boys.\u000a\u000a[[I don't care. I like her.|27]]\u000a[[Ok, so?|13]]\u000a[[But Liz is my friend! She's my best friend!|28]]\u000a
 p79
 sg20
 g21
@@ -254,8 +254,8 @@ g12
 I00
 sg13
 (lp87
-F187.5
-aF502.5
+F180.32701253646621
+aF526.88815737601499
 asg15
 (itiddlywiki
 Tiddler
@@ -848,7 +848,7 @@ sg210
 (lp266
 sbsa(dp267
 g12
-I01
+I00
 sg13
 (lp268
 F2036.8405542852645
@@ -890,7 +890,7 @@ p281
 (lp282
 sbsa(dp283
 g12
-I00
+I01
 sg13
 (lp284
 F66.5625
@@ -901,7 +901,7 @@ Tiddler
 p285
 (dp286
 g271
-VWhy don't you start doing gymnastics again?\u000a\u000a[[The bus doesn't go there anymore...|24]]\u000a[[Yeah, that was fun.|25]]\u000a[[I'm in a book club now, mom|26]]\u000a
+VWhy don't you start doing gymnastics again?\u000a\u000a[[The bus doesn't go there anymore...|24]]\u000a[[Yeah, that was fun.|25]]\u000a[[I'm in a book club now, mom.|26]]\u000a
 p287
 sg273
 g21
@@ -1041,8 +1041,8 @@ g12
 I00
 sg13
 (lp328
-F609.57275486872231
-aF203.69194985413552
+F599.53057241977478
+aF210.86493731766936
 asg15
 (itiddlywiki
 Tiddler

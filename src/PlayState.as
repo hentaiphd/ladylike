@@ -98,13 +98,13 @@ package
                 FlxG.music.stop();
                 var pick:Number = FlxG.random()*5;
                 if (pick > 3) {
-                    FlxG.switchState(new TextState("Wait for me at\nthe food court", new MallState("Hey, wanna play cootie catcher?", new CootieState())));
+                    FlxG.switchState(new TextState("Wait for me in\nthe food court.", new MallState("Hey, wanna play cootie catcher?", new CootieState())));
                 } else if (pick > 2){
-                    FlxG.switchState(new TextState("Going shopping", new DressingState()))
+                    FlxG.switchState(new TextState("Pick out some clothes.", new DressingState()))
                 } else if (pick > 1) {
-                    FlxG.switchState(new TextState("Oh - I forgot the eggs!\nRun and get me some", new GroceryState()));
+                    FlxG.switchState(new TextState("Run and grab some eggs,\nwould you?", new GroceryState()));
                 } else {
-                    FlxG.switchState(new TextState("At the toy store", new ToyStoreState()));
+                    FlxG.switchState(new TextState("I'm shopping--you can wait\nin the toystore.", new ToyStoreState()));
                 }
             } else if (nextSentence == "RESTART") {
                 FlxG.switchState(new PlayState());
