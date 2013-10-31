@@ -3,7 +3,6 @@ package
     import org.flixel.*;
     import org.twine.*;
     import com.adobe.serialization.json.JSON;
-    import flash.debugger.enterDebugger;
 
     public class PlayState extends FlxState{
         [Embed(source = '../assets/CarLayer2.png')] public static var spriteFrontseat:Class;

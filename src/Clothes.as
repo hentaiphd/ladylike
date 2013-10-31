@@ -13,6 +13,9 @@ package
         public var outfit2:Outfits;
         public var outfit3:Outfits;
         public var outfit4:Outfits;
+        public var outfit5:Outfits;
+        public var outfit6:Outfits;
+        public var outfit7:Outfits;
 
         public function Clothes(x:int,y:int):void{
             super(x,y);
@@ -21,16 +24,22 @@ package
 
             outfits = new Array();
 
-            outfit0 = new Outfits(x,y);
+            outfit0 = new Outfits(x,y,0);
             outfits[0] = outfit0;
-            outfit1 = new Outfits(x,y);
+            outfit1 = new Outfits(x,y,1);
             outfits[1] = outfit1;
-            outfit2 = new Outfits(x,y);
+            outfit2 = new Outfits(x,y,2);
             outfits[2] = outfit2;
-            outfit3 = new Outfits(x,y);
+            outfit3 = new Outfits(x,y,3);
             outfits[3] = outfit3;
-            outfit4 = new Outfits(x,y);
+            outfit4 = new Outfits(x,y,4);
             outfits[4] = outfit4;
+            outfit5 = new Outfits(x,y,5);
+            outfits[5] = outfit5;
+            outfit6 = new Outfits(x,y,6);
+            outfits[6] = outfit6;
+            outfit7 = new Outfits(x,y,7);
+            outfits[7] = outfit7;
 
             FlxG.state.add(outfits[0]);
         }
@@ -40,20 +49,16 @@ package
             if(direction == 1){
                 counter--;
                 if(counter < 0){
-                    counter = 4;
+                    counter = outfits.length;
                 }
             }else if(direction == 2){
                 counter++;
-                if(counter == 5){
+                if(counter == outfits.length){
                     counter = 0;
 
                 }
             }
             FlxG.state.add(outfits[counter]);
-        }
-
-        override public function update():void{
-            super.update();
         }
     }
 }
