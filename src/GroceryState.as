@@ -22,7 +22,11 @@ package
             var bg:FlxSprite = new FlxSprite(0, 0, spriteBG);
             add(bg);
 
-            timerText = new FlxText(50,10,200,"");
+            var instruction:FlxSprite = new FlxText(220,5,100,"Arrows to grab some eggs and bring them to mom");
+            instruction.color = 0xFF666699;
+            FlxG.state.add(instruction);
+
+            timerText = new FlxText(50,10,100,"");
             timerText.color = 0xFF666699;
             add(timerText);
 
