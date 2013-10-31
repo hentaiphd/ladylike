@@ -5,6 +5,7 @@ package {
         [Embed(source = '../assets/toyaisle.png')] public static var spriteBG:Class;
         [Embed(source = '../assets/doll.png')] public static var spriteDoll:Class;
         [Embed(source = '../assets/dollnaked.png')] public static var spriteDollNaked:Class;
+        [Embed(source = '../assets/toystoreloop.mp3')] public static var sndBG:Class;
 
         public var toys:Array = new Array();
         public var bg:FlxSprite;
@@ -33,6 +34,8 @@ package {
                 toys[i] = toy;
             }
             makePlayer();
+
+            FlxG.playMusic(sndBG);
         }
 
         override public function update():void {
