@@ -159,7 +159,7 @@ package
                     remove(hand);
                     var bgHand:FlxSprite = new FlxSprite(0, 0, spriteHand);
                     add(bgHand);
-                    _open.y = -190;
+                    _open.y = -170;
                     add(_open);
                     endTime = timeSec;
                     gameDone = true;
