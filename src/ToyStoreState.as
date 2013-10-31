@@ -12,6 +12,7 @@ package {
         public var grabTime:int = -1;
         public var nudeTime:int = -1;
         public var doll:FlxSprite;
+        public var help:FlxText;
 
         override public function create():void {
             super._create(false, false);
@@ -34,12 +35,14 @@ package {
                 toys[i] = toy;
             }
             makePlayer();
-
             FlxG.playMusic(sndBG);
+            help = new FlxText(40,30,250,"ARROW KEY or ENTER");
+            add(help);
         }
 
         override public function update():void {
             super.update();
+
             if (player.grabbing) {
                 for(var i:int = 0; i < toys.length; i++){
                     if (player.overlaps(toys[i])) {
@@ -70,7 +73,7 @@ package {
 
             if (nudeTime != -1){
                 if (timeSec - nudeTime >= 10){
-                    FlxG.switchState(new TextState("What is this supposed to say", new EndState("")));
+                    FlxG.switchState(new TextState("I wish you would stop cutting the hair off your Barbies. They're so expensive.", new EndState("")));
                 }
             }
         }
