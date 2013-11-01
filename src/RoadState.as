@@ -53,9 +53,9 @@ package
 
             makePlayer();
 
-            flowers = new Array(20);
+            flowers = new Array(30);
             for(var i:int = 0; i < flowers.length; i++){
-                var flower:Flower = new Flower((30*i+Math.random()*40), 210+((Math.random()*8)-4));
+                var flower:Flower = new Flower((Math.random()*320), 210+((Math.random()*8)-4));
                 add(flower);
                 flowers[i] = flower;
             }
