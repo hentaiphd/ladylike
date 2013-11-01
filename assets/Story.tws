@@ -1,11 +1,11 @@
 (dp0
 S'buildDestination'
 p1
-V/Users/NinaFreeman/Desktop/final
+V/Users/NinaFreeman/Desktop/finaltest
 p2
 sS'saveDestination'
 p3
-V/Users/NinaFreeman/Desktop/git/ludumdare/assets/Story.tws
+S'/Users/NinaFreeman/Desktop/git/ludumdare/assets/Story.tws'
 p4
 sS'target'
 p5
@@ -114,7 +114,7 @@ Tiddler
 p44
 (dp45
 g18
-VWhy can't you find a new friend? She's not the only girl on earth.\u000a\u000a[[She can be a little crazy sometimes...|4]]\u000a[[She's really nice to me. I don't need a new friend.|3]]\u000a
+VWhy can't you find a new friend? She's not the only girl on earth.\u000a\u000a[[She can be a little crazy sometimes...|3]]\u000a[[She's really nice to me. I don't need a new friend.|3]]\u000a[[...|4]]\u000a
 p46
 sg20
 g21
@@ -225,7 +225,7 @@ Tiddler
 p77
 (dp78
 g18
-VLiz is fresh. She's always swearing and talking about boys.\u000a\u000a[[I don't care. I like her.|27]]\u000a[[Ok, so?|13]]\u000a[[But Liz is my friend! She's my best friend!|28]]\u000a
+VLiz is fresh. She's always swearing and talking about boys.\u000a\u000a[[I don't care. I like her.|27]]\u000a[[Ok...|13]]\u000a[[But Liz is my friend! She's my best friend!|28]]\u000a
 p79
 sg20
 g21
@@ -291,8 +291,8 @@ g12
 I00
 sg13
 (lp98
-F379.6875
-aF500.0
+F383.99129247812027
+aF494.26161002917291
 asg15
 (itiddlywiki
 Tiddler
@@ -365,15 +365,15 @@ g12
 I00
 sg13
 (lp120
-F1706.3779025072931
-aF88.380805014586485
+F1775.2385821572179
+aF65.427245131278127
 asg15
 (itiddlywiki
 Tiddler
 p121
 (dp122
 g18
-VTaking care of your body is more important than Liz. Why don't you start running?\u000a\u000a[[Friends ARE important. Do you want me to be alone, mom?|15]]\u000a[[Liz and I walk everywhere all the time.|13]]\u000a[[I don't care about my body.|12]]\u000a
+VTaking care of your body is more important than Liz. Why don't you start running?\u000a\u000a[[Friends ARE important. Do you want me to be alone, mom?|15]]\u000a[[Liz and I walk everywhere all the time.|13]]\u000a[[I don't care about my body.|62]]\u000a
 p123
 sg20
 g21
@@ -410,7 +410,7 @@ Tiddler
 p132
 (dp133
 g18
-VYou SHOULD care. Stop letting yourself go!\u000a\u000a[[Mom, Liz and I are active. We walk a lot.|13]]\u000a[[I know I'm fat. I suck. Who cares.|23]]\u000a
+VYou SHOULD care. Stop letting yourself go!\u000a\u000a[[Mom, Liz and I are active. We walk a lot.|25]]\u000a[[I know I'm fat. I suck. Who cares.|23]]\u000a[[I don't know...|42]]\u000a
 p134
 sg20
 g21
@@ -439,15 +439,15 @@ g12
 I00
 sg13
 (lp142
-F718.125
-aF711.25
+F675.08707521879683
+aF718.42298746353447
 asg15
 (itiddlywiki
 Tiddler
 p143
 (dp144
 g18
-VYou're just being dramatic.\u000a\u000a[[Other girls tease my friend Alex, they call her fat.|11]]\u000a[[You don't go to my school, so you don't know how much it sucks!|13]]\u000a[[...|27]]\u000a
+VYou're just being dramatic.\u000a\u000a[[Other girls tease my friend Alex, they call her fat.|11]]\u000a[[You don't go to my school, so you don't know how much it sucks!|23]]\u000a[[...|26]]\u000a
 p145
 sg20
 g21
@@ -476,15 +476,15 @@ g12
 I00
 sg13
 (lp153
-F1127.9258899708273
-aF38.152669912481279
+F1112.1453175510528
+aF35.283474927067729
 asg15
 (itiddlywiki
 Tiddler
 p154
 (dp155
 g18
-VWhen you leave middle school you'll make new friends.\u000a\u000a[[How do you know? It's hard to make friends.|16]]\u000a[[Liz and I are always going to be best friends.|27]]\u000a
+VWhen you leave middle school you'll make new friends.\u000a\u000a[[How do you know? It's hard to make friends.|16]]\u000a[[Liz and I are always going to be best friends.|27]]\u000a[[Ok...|27]]\u000a
 p156
 sg20
 g21
@@ -513,8 +513,8 @@ g12
 I00
 sg13
 (lp164
-F1544.145509737443
-aF113.79218244894743
+F1524.0611448395473
+aF120.9651699124811
 asg15
 (itiddlywiki
 Tiddler
@@ -547,7 +547,7 @@ sg29
 (lp173
 sbsa(dp174
 g12
-I00
+I01
 sg13
 (lp175
 F1120.5986852479696
@@ -558,7 +558,7 @@ Tiddler
 p176
 (dp177
 g18
-VThe way you present yourself is... well, it's everything. You need to look good and be around interesting people. \u000a\u000a[[My friends are interesting|19]]\u000a[[What does that even mean?|20]]\u000a
+VThe way you present yourself is... well, it's everything. You need to look good and be around interesting people. \u000a\u000a[[My friends are interesting.|19]]\u000a[[What does that even mean?|20]]\u000a[[Oh...|19]]\u000a\u000a
 p178
 sg20
 g21
@@ -587,8 +587,8 @@ g12
 I00
 sg13
 (lp186
-F917.25735236142839
-aF645.02766991248131
+F910.08436489789494
+aF656.50444985413571
 asg15
 (itiddlywiki
 Tiddler
@@ -624,8 +624,8 @@ g12
 I00
 sg13
 (lp197
-F361.09578274067661
-aF314.72697212804525
+F381.18014763857144
+aF347.72271446030106
 asg15
 (itiddlywiki
 Tiddler
@@ -890,7 +890,7 @@ p281
 (lp282
 sbsa(dp283
 g12
-I01
+I00
 sg13
 (lp284
 F66.5625
@@ -967,8 +967,8 @@ g12
 I00
 sg13
 (lp306
-F279.38951253646604
-aF651.02322005834571
+F289.43169498541357
+aF682.58436489789483
 asg15
 (itiddlywiki
 Tiddler
@@ -1041,8 +1041,8 @@ g12
 I00
 sg13
 (lp328
-F599.53057241977478
-aF210.86493731766936
+F552.18885516045134
+aF195.08436489789491
 asg15
 (itiddlywiki
 Tiddler
@@ -1078,15 +1078,15 @@ g12
 I00
 sg13
 (lp339
-F554.95781755105259
-aF395.59597492706774
+F579.34597492706814
+aF371.20781755105287
 asg15
 (itiddlywiki
 Tiddler
 p340
 (dp341
 g271
-VYou don't need to start dating boys until you're 25. They're a waste of time when you're young. \u000a\u000a[[Ew, mom, I never said I wanted to date boys|30]]\u000a[[I'm not pretty enough anyways...|29]]\u000a[[All my friends have boyfriends!|14]]\u000a
+VYou don't need to start dating boys until you're 25. They're a waste of time when you're young. \u000a\u000a[[Ew, mom, I never said I wanted to date boys.|30]]\u000a[[I'm not pretty enough anyways...|29]]\u000a[[All my friends have boyfriends!|14]]\u000a
 p342
 sg273
 g21
@@ -1115,8 +1115,8 @@ g12
 I00
 sg13
 (lp350
-F487.33127020421028
-aF648.02612256563896
+F511.7194275802255
+aF655.19911002917274
 asg15
 (itiddlywiki
 Tiddler
@@ -1152,8 +1152,8 @@ g12
 I00
 sg13
 (lp361
-F689.6162924781205
-aF535.14241504375946
+F693.92008495624088
+aF516.49264763857138
 asg15
 (itiddlywiki
 Tiddler
@@ -1189,8 +1189,8 @@ g12
 I00
 sg13
 (lp372
-F499.50967830954846
-aF812.74535795947395
+F513.85565323661626
+aF811.31076046676731
 asg15
 (itiddlywiki
 Tiddler
@@ -1226,15 +1226,15 @@ g12
 I00
 sg13
 (lp383
-F982.79934262398513
-aF178.4084749270678
+F1005.752902507294
+aF171.2354874635339
 asg15
 (itiddlywiki
 Tiddler
 p384
 (dp385
 g271
-VYou're a child--you do not have privacy from your mother. \u000a\u000a[[That's not fair...|34]]\u000a[[Liz's mom let's her do whatever she wants.|33]]\u000a
+VYou're a child--you do not have privacy from your mother. \u000a\u000a[[That's not fair...|34]]\u000a[[Liz's mom let's her do whatever she wants.|33]]\u000a[[Ok...|63]]\u000a
 p386
 sg281
 (lp387
@@ -1263,8 +1263,8 @@ g12
 I00
 sg13
 (lp394
-F1174.375
-aF162.50000000000003
+F1210.2399373176695
+aF166.80379247812039
 asg15
 (itiddlywiki
 Tiddler
@@ -1300,8 +1300,8 @@ g12
 I00
 sg13
 (lp405
-F1666.5625
-aF531.25000000000011
+F1711.0350222739098
+aF561.37654734684236
 asg15
 (itiddlywiki
 Tiddler
@@ -1374,8 +1374,8 @@ g12
 I00
 sg13
 (lp427
-F784.23258495624054
-aF171.49129247812039
+F788.53637743436116
+aF213.0946197666168
 asg15
 (itiddlywiki
 Tiddler
@@ -1411,8 +1411,8 @@ g12
 I00
 sg13
 (lp438
-F994.55824233225599
-aF324.13235236142879
+F1026.1193871718051
+aF325.56694985413549
 asg15
 (itiddlywiki
 Tiddler
@@ -1448,15 +1448,15 @@ g12
 I00
 sg13
 (lp449
-F846.082625364661
-aF462.37209749270681
+F844.6480278719539
+aF435.11474513127791
 asg15
 (itiddlywiki
 Tiddler
 p450
 (dp451
 g271
-VIt doesn't need to make sense--you're still a child. You shouldn't be around rowdy girls.\u000a\u000a[[All the boys like her...|28]]\u000a[[I'll be older soon!|37]]\u000a
+VIt doesn't need to make sense--you're still a child. You shouldn't be around rowdy girls.\u000a\u000a[[All the boys like her...|51]]\u000a[[I'll be older soon!|37]]\u000a
 p452
 sg281
 (lp453
@@ -1485,8 +1485,8 @@ g12
 I00
 sg13
 (lp460
-F1186.4622674051882
-aF308.14086769691727
+F1228.0655946936845
+aF331.0944275802255
 asg15
 (itiddlywiki
 Tiddler
@@ -1522,8 +1522,8 @@ g12
 I00
 sg13
 (lp471
-F1396.476779941652
-aF362.8837075218795
+F1463.902862098869
+aF335.62635516045066
 asg15
 (itiddlywiki
 Tiddler
@@ -1559,8 +1559,8 @@ g12
 I00
 sg13
 (lp482
-F1039.450445478197
-aF482.27824647165443
+F1020.8006780730087
+aF479.40905148624074
 asg15
 (itiddlywiki
 Tiddler
@@ -1596,15 +1596,15 @@ g12
 I00
 sg13
 (lp493
-F1227.382717022783
-aF503.79720886225698
+F1267.5514468185725
+aF493.75502641330962
 asg15
 (itiddlywiki
 Tiddler
 p494
 (dp495
 g271
-VStop saying that. I don't need your drama right now.\u000a\u000a[[Well you're my mom so you have to deal with it.|8]]\u000a[[Can we just go home?|25]]\u000a[[Mom...|41]]\u000a
+VStop saying that. I don't need your drama right now.\u000a\u000a[[Well you're my mom so you have to deal with it.|64]]\u000a[[Can we just go home?|25]]\u000a[[Mom...|41]]\u000a
 p496
 sg281
 (lp497
@@ -1892,8 +1892,8 @@ g12
 I00
 sg13
 (lp581
-F387.3413230308289
-aF1030.0409997634624
+F411.729480406844
+aF1051.5599621540639
 asg15
 (itiddlywiki
 Tiddler
@@ -1929,8 +1929,8 @@ g12
 I00
 sg13
 (lp592
-F595.78136087676523
-aF1028.6064022707551
+F602.95434834029902
+aF1038.6485847197023
 asg15
 (itiddlywiki
 Tiddler
@@ -1966,8 +1966,8 @@ g12
 I00
 sg13
 (lp603
-F775.1060474651116
-aF1038.6485847197027
+F836.79373965150342
+aF1037.2139872269956
 asg15
 (itiddlywiki
 Tiddler
@@ -2003,8 +2003,8 @@ g12
 I00
 sg13
 (lp614
-F668.94583300481031
-aF870.80067807301054
+F710.54916029330673
+aF852.15091066782259
 asg15
 (itiddlywiki
 Tiddler
@@ -2040,8 +2040,8 @@ g12
 I00
 sg13
 (lp625
-F892.74304186706638
-aF801.93999842308563
+F894.17763935977314
+aF813.41677836473968
 asg15
 (itiddlywiki
 Tiddler
@@ -2386,7 +2386,7 @@ Tiddler
 p730
 (dp731
 g705
-VYou don't need to be like other girls--you just need to be respectful and ladylike.\u000a\u000a[[I'm not a lady.|66]]\u000a[[People say I'm really nice all the time.|65]]\u000a
+VYou don't need to be like other girls--you just need to be respectful and ladylike.\u000a\u000a[[I'm not a lady.|66]]\u000a[[People say I'm really nice all the time.|65]]\u000a[[Ok.|65]]\u000a
 p732
 sg707
 (lp733
@@ -2423,7 +2423,7 @@ Tiddler
 p741
 (dp742
 g705
-VI did raise you to be a nice girl--but you're not always nice to me.\u000a\u000a[[A lot of pretty girls at school are mean.|63]]\u000a[[It's hard when you call me fat all the time.|54]]\u000a
+VI did raise you to be a nice girl--but you're not always nice to me.\u000a\u000a[[A lot of pretty girls at school are mean.|63]]\u000a[[It's hard when you call me fat all the time.|54]]\u000a[[...Sorry.|67]]\u000a
 p743
 sg707
 (lp744
@@ -2460,7 +2460,7 @@ Tiddler
 p752
 (dp753
 g705
-VYes, but hanging around with Liz isn't helping. She's making you fresh.\u000a\u000a[[Ugh, MOM can we stop talking about Liz.|8]]\u000a[[She's nice. She doesn't make me do anything.|47]]\u000a
+VYes, but hanging around with Liz isn't helping. She's making you fresh.\u000a\u000a[[Ugh, MOM can we stop talking about Liz.|8]]\u000a[[She's nice. She doesn't make me do anything.|47]]\u000a[[Sure.|47]]\u000a
 p754
 sg707
 (lp755
@@ -2489,15 +2489,15 @@ g12
 I00
 sg13
 (lp762
-F1908.7751320665454
-aF347.17259323503885
+F1894.4291571394779
+aF347.17259323503879
 asg15
 (itiddlywiki
 Tiddler
 p763
 (dp764
 g705
-VYou're not a lady yet--you're a little girl--but you will be someday.\u000a\u000a[[I just want to be me.|67]]\u000a[[I'm NOT a girly-girl mom, just get over it.|8]]\u000a
+VYou're not a lady yet--you're a little girl--but you will be someday.\u000a\u000a[[I just want to be me.|67]]\u000a[[I'm NOT a girly-girl mom, just get over it.|8]]\u000a[[...|67]]\u000a
 p765
 sg707
 (lp766
