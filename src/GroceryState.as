@@ -32,6 +32,7 @@ package
 
             makePlayer();
             player.x = 20;
+            player.runFast = true;
 
             eggs = new Array(1);
             for(var i:int = 0; i < eggs.length; i++){

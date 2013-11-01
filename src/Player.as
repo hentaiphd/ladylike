@@ -17,6 +17,7 @@ package
         public var no_control:Boolean = false;
         public var fallen:Boolean = false;
         public var isMoving:Boolean = false;
+        public var runFast:Boolean = false;
 
         public function Player(x:int,y:int,slippery:Boolean,grabDown:Boolean):void{
             super(x,y);
@@ -27,8 +28,8 @@ package
             frameHeight = 36;
             width = 10;
 
-            addAnimation("run", [7,8,9,10], 8, true);
-            addAnimation("fastrun", [7,8,9,10], 8, true);
+            addAnimation("run", [5,6,7,8], 8, true);
+            addAnimation("fastrun", [9,10,11,12,13], 8, true);
             addAnimation("standing", [0]);
             addAnimation("crouching", [1, 2], 7, false);
             addAnimation("reaching", [17, 18], 7, false);
@@ -92,7 +93,11 @@ package
             } else {
                 x -= runSpeed;
             }
-            play("run");
+            if(this.runFast) {
+                play("fastrun");
+            } else {
+                play("run");
+            }
         }
 
         public function runRight():void{
@@ -103,7 +108,11 @@ package
             } else {
                 x += runSpeed;
             }
-            play("run");
+            if(this.runFast) {
+                play("fastrun");
+            } else {
+                play("run");
+            }
         }
 
         public function decelerate():void{
@@ -111,7 +120,11 @@ package
                 drag.x += 200;
                 if (!this.fallen){
                     isMoving = true;
-                    play("run");
+                    if(this.runFast) {
+                        play("fastrun");
+                    } else {
+                        play("run");
+                    }
                 }
                 counter++;
             } else if (counter == 5) {
