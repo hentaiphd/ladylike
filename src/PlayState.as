@@ -4,7 +4,7 @@ package
     import org.twine.*;
     import com.adobe.serialization.json.JSON;
 
-    public class PlayState extends FlxState{
+    public class PlayState extends TimedState{
         [Embed(source = '../assets/CarLayer2.png')] public static var spriteFrontseat:Class;
         [Embed(source = '../assets/CarLayer1.png')] public static var spriteDash:Class;
         [Embed(source = '../assets/CarLayer0.png')] public static var spriteRoad:Class;
@@ -20,6 +20,7 @@ package
         public var posX:int = 162;
         public var posY:int = 113;
         public var conversationData:Array;
+        public var started:Boolean = false;
 
         public static const CONV_END:Number = -69;
         public static const NO_RESULT:String = "-1";
@@ -51,38 +52,45 @@ package
             girl.addAnimation("run", [0, 1, 2], 2, true);
             add(girl);
             girl.play("run");
-            var girlSpeech:FlxSprite = new FlxSprite(220, 225, spriteGirlSpeech);
-            add(girlSpeech);
-            var momSpeech:FlxSprite = new FlxSprite(30, 80, spriteMomSpeech);
-            add(momSpeech);
 
             FlxG.playMusic(sndBG);
-
-            textBoxReply = new FlxSprite(girlTextX-8,girlTextY);
-            textBoxReply.makeGraphic(240,90,0x99FFFFFF);
-            add(textBoxReply);
-
-            textBoxMom = new FlxSprite(momTextX-5,momTextY);
-            textBoxMom.makeGraphic(225,37,0xFF000000);
-            add(textBoxMom);
-
-            var pages:Array = (new org.twine.TwineImporter(twineFile)).getPages();
-
-            conversationData = buildConversation(pages);
-            var start_branch:ConvoBranch;
-            for(var i:Number = 0; i < conversationData.length; i++){
-                if(conversationData[i]._id == "Start") {
-                    start_branch = conversationData[i];
-                }
-            }
-
-            convo = new Convo(start_branch);
-            convo.newConvo(girlTextX,girlTextY);
-            convo.start();
         }
 
         override public function update():void{
             super.update();
+
+            if (timeSec == 2 && !started){
+                started = true;
+                var girlSpeech:FlxSprite = new FlxSprite(220, 225, spriteGirlSpeech);
+                add(girlSpeech);
+                var momSpeech:FlxSprite = new FlxSprite(30, 80, spriteMomSpeech);
+                add(momSpeech);
+
+                textBoxReply = new FlxSprite(girlTextX-8,girlTextY);
+                textBoxReply.makeGraphic(240,90,0x99FFFFFF);
+                add(textBoxReply);
+
+                textBoxMom = new FlxSprite(momTextX-5,momTextY);
+                textBoxMom.makeGraphic(225,37,0xFF000000);
+                add(textBoxMom);
+
+                var pages:Array = (new org.twine.TwineImporter(twineFile)).getPages();
+
+                conversationData = buildConversation(pages);
+                var start_branch:ConvoBranch;
+                for(var i:Number = 0; i < conversationData.length; i++){
+                    if(conversationData[i]._id == "Start") {
+                        start_branch = conversationData[i];
+                    }
+                }
+
+                convo = new Convo(start_branch);
+                convo.newConvo(girlTextX,girlTextY);
+                convo.start();
+            }
+
+            if (!started) { return; }
+
             var nextSentence:String = convo.getInput();
             if (int(nextSentence) > 0){
                 FlxG.play(sndHiBlip);
