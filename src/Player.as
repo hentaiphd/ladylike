@@ -28,6 +28,7 @@ package
             width = 10;
 
             addAnimation("run", [7,8,9,10], 8, true);
+            addAnimation("fastrun", [7,8,9,10], 8, true);
             addAnimation("standing", [0]);
             addAnimation("crouching", [1, 2], 7, false);
             addAnimation("reaching", [17, 18], 7, false);

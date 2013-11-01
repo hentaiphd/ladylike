@@ -10,7 +10,7 @@ package
         public var eggs:Array;
         public var timerText:FlxText;
         public var lost:Boolean = false;
-        public var timeLimit:int = 2;
+        public var timeLimit:int = 4;
         public var timeLose:int = -1;
         public var timeGrab:int = -1;
         public var soundLock:Boolean = false;
@@ -79,7 +79,7 @@ package
                 }
             }
 
-            if (player.grabbing) {
+            if (player.grabbing && player.x < 210) {
                 timeGrab = timeFrame;
                 for(i = 0; i < eggs.length; i++){
                     player.holding = true;
