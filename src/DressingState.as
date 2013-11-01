@@ -48,7 +48,7 @@ package
             FlxG.state.add(instruction);
 
             hangers.push(new FlxSprite(79, 78, spriteOutfit0));
-            hangers.push(new FlxSprite(191, 94, spriteOutfit1));
+            hangers.push(new FlxSprite(185, 94, spriteOutfit1));
             hangers.push(new FlxSprite(218, 49, spriteOutfit2));
             hangers.push(new FlxSprite(263, 16, spriteOutfit3));
             hangers.push(new FlxSprite(241, 94, spriteOutfit4));

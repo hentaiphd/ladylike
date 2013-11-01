@@ -28,15 +28,9 @@ package {
             doll.addAnimation("fwd", [0, 1, 2, 3, 4, 5, 6, 7, 0], 4, false);
             doll.addAnimation("rev", [7, 6, 5, 4, 3, 2, 1, 0], 4, false);
 
-            toys = new Array(1);
-            for(var i:int = 0; i < toys.length; i++){
-                var toy:Toy = new Toy(100, 184);
-                add(toy);
-                toys[i] = toy;
-            }
             makePlayer();
             FlxG.playMusic(sndBG);
-            help = new FlxText(40,30,250,"ARROW KEY or ENTER");
+            help = new FlxText(40,30,250,"Arrows to walk or grab");
             add(help);
         }
 
@@ -44,20 +38,16 @@ package {
             super.update();
 
             if (player.grabbing) {
-                for(var i:int = 0; i < toys.length; i++){
-                    if (player.overlaps(toys[i])) {
-                        toys[i].kill();
-                        bg.play("run");
-                        grabTime = timeSec;
-                        player.no_control = true;
-                        var smoke:FlxSprite = new FlxSprite(0, 0);
-                        smoke.makeGraphic(320, 240, 0x88000000);
-                        add(smoke);
-                        var instruction:FlxSprite = new FlxText(5,200,100,"Arrows to turn, ENTER to examine further.");
-                        FlxG.state.add(instruction);
-                        add(doll);
-                    }
-                }
+                remove(help);
+                bg.play("run");
+                grabTime = timeSec;
+                player.no_control = true;
+                var smoke:FlxSprite = new FlxSprite(0, 0);
+                smoke.makeGraphic(320, 240, 0x88000000);
+                add(smoke);
+                var instruction:FlxSprite = new FlxText(5,200,100,"Arrows to turn, ENTER to examine further.");
+                add(instruction);
+                add(doll);
             }
 
             if (grabTime != -1) {
@@ -73,7 +63,7 @@ package {
 
             if (nudeTime != -1){
                 if (timeSec - nudeTime >= 4){
-                    FlxG.switchState(new TextState("I wish you would stop cutting the hair off your Barbies. They're so expensive.", new EndState("")));
+                    FlxG.switchState(new TextState("I wish you would stop cutting the hair off your Barbies. They're so expensive.", new EndState("Why don't you want Baywatch Barbie? She's the prettiest.")));
                 }
             }
         }
