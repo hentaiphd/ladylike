@@ -13,10 +13,15 @@ package {
         public var nudeTime:int = -1;
         public var doll:FlxSprite;
         public var help:FlxText;
+        public var reaching:FlxText;
+        public var smoke:FlxSprite;
+        public var instruction:FlxSprite;
+        public var isFirstGrab:Boolean;
 
         override public function create():void {
             super._create(false, false);
             makeGround();
+            isFirstGrab = true;
 
             bg = new FlxSprite(0, 0);
             bg.loadGraphic(spriteBG, true, true, 320, 240, true);
@@ -38,16 +43,20 @@ package {
             super.update();
 
             if (player.grabbing) {
+                player.grabbing = false;
                 remove(help);
-                bg.play("run");
                 grabTime = timeSec;
                 player.no_control = true;
-                var smoke:FlxSprite = new FlxSprite(0, 0);
+                smoke = new FlxSprite(0, 0);
                 smoke.makeGraphic(320, 240, 0x88000000);
                 add(smoke);
-                var instruction:FlxSprite = new FlxText(5,200,100,"Arrows to turn, ENTER to examine further.");
+                instruction = new FlxText(5,170,100,"LEFT + RIGHT to turn, ENTER to examine further, DOWN to put away.");
                 add(instruction);
                 add(doll);
+                if(isFirstGrab == true){
+                    bg.play("run");
+                    isFirstGrab = false;
+                }
             }
 
             if (grabTime != -1) {
@@ -58,11 +67,19 @@ package {
                 } else if (FlxG.keys.justPressed("ENTER")){
                     doll.loadGraphic(spriteDollNaked, true, true, 845/8, 200, true);
                     nudeTime = timeSec;
+                } else if (FlxG.keys.justPressed("DOWN")){
+                    FlxG.state.remove(instruction);
+                    FlxG.state.remove(smoke);
+                    FlxG.state.remove(doll);
+                    reaching = new FlxText(40,30,250,"I can't reach those other toys...");
+                    add(reaching);
+                    player.no_control = false;
+                    grabTime = -1;
                 }
             }
 
             if (nudeTime != -1){
-                if (timeSec - nudeTime >= 4){
+                if (timeSec - nudeTime >= 10){
                     FlxG.switchState(new TextState("I wish you would stop cutting the hair off your Barbies. They're so expensive.", new EndState("Why don't you want Baywatch Barbie? She's the prettiest.")));
                 }
             }

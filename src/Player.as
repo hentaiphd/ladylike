@@ -18,6 +18,7 @@ package
         public var fallen:Boolean = false;
         public var isMoving:Boolean = false;
         public var runFast:Boolean = false;
+        public var dropping:Boolean = false;
 
         public function Player(x:int,y:int,slippery:Boolean,grabDown:Boolean):void{
             super(x,y);
@@ -65,6 +66,7 @@ package
             if (this.no_control) return;
             if(FlxG.keys.DOWN && this.grabDown){
                 grabbing = true;
+                dropping = true;
                 play("crouching");
             } else if(FlxG.keys.UP && !this.grabDown){
                 grabbing = true;
