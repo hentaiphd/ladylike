@@ -34,6 +34,27 @@ License
 -------
 
 ![](http://www.gnu.org/graphics/lgplv3-147x51.png)
+![](http://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)
 
-Ladylike is free software, and is released under the LGPL version 3. See the file
-`COPYING` for the text of the license.
+Ladylike's code (the `src` directory) is free software, and is released under the
+[LGPL version 3](http://www.gnu.org/licenses/lgpl.html). See the file `src/COPYING`
+for the text of the license.
+
+Ladylike's `assets` directory, which includes images, audio, and story files,
+is released under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
+International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+    This file is part of Ladylike's source.
+
+    Ladylike's source is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Ladylike's source is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with Ladylike's source. If not, see <http://www.gnu.org/licenses/>.
