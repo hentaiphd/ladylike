@@ -2,3 +2,4 @@
 .*.un~
 .*.swp
 .DS_Store
+nohup.out
